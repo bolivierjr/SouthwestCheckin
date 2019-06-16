@@ -1,0 +1,6 @@
+*.pyc
+*.swp
+.cache/
+.coverage
+htmlcov/
+coverage.xml

@@ -1,0 +1,13 @@
+coverage
+datetime
+docopts
+pycodestyle
+pytest
+pytest-cov
+pytest-mock
+python-dateutil
+pytz
+requests
+requests_mock
+uuid
+vcrpy

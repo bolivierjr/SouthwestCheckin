@@ -1,0 +1,45 @@
+version: '3.6'
+services:
+  redis-cache:
+    image: redis:alpine
+    ports:
+      - '6379:6379'
+
+  checkin-api:
+    container_name: checkin-api
+    depends_on:
+      - redis-cache
+    env_file:
+      - backend/.env.dev
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    restart: always
+    volumes:
+      - './backend:/backend'
+    ports:
+      - 5000:5000
+    expose:
+      - 5000
+
+  celery:
+    container_name: celery-worker
+    depends_on:
+      - redis-cache
+    env_file:
+      - backend/.env.dev
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    command:
+      [
+        celery,
+        worker,
+        --app=tasks.celery.app,
+        --pool=gevent,
+        --concurrency=30,
+        --loglevel=INFO,
+      ]
+    restart: always
+    volumes:
+      - './backend:/backend'

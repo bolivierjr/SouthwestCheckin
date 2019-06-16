@@ -1,0 +1,14 @@
+.env
+.env.dev
+.env.test
+
+*.pyc
+*.swp
+.pytest_cache/
+.cache/
+.coverage
+htmlcov/
+coverage.xml
+
+.vscode
+venv/
