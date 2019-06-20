@@ -1,6 +1,6 @@
 import os
 from flask import Flask, jsonify
-from tasks.autocheckin import autocheckin
+from tasks import autocheckin
 
 
 def create_app():
@@ -9,6 +9,8 @@ def create_app():
 
     @app.route("/api/checkin")
     def index():
+        # Using fake parameters for testing right now. Make
+        # this accept real parameters from endpoint and clean
         try:
             autocheckin.delay("xxxxxx", "bruce", "olivier")
         except (TypeError, Exception) as exc:
