@@ -13,7 +13,7 @@ class RedisStream(StringIO):
 
     def write(self, record):
         """
-        Publish record to redis logging list
+        Publish record to redis logging hash.
         """
         if record != "\n":
             messages = self.redis_client.hget(self.confirmation, "messages")

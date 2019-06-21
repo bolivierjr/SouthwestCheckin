@@ -14,8 +14,8 @@ def create_app():
         try:
             autocheckin.delay("xxxxxx", "bruce", "olivier")
         except (TypeError, Exception) as exc:
-            return jsonify({"error": f"{exc}"})
+            return jsonify({"error": f"{exc}"}), 500
 
-        return jsonify({"status": "ok"})
+        return jsonify({"status": "ok"}), 201
 
     return app
