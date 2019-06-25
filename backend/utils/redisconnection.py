@@ -20,7 +20,7 @@ class RedisCache:
         return cls._instance
 
     def __init__(self):
-        self._redis_connection = Redis(**REDIS_CREDS)
+        self._redis_connection = Redis(**REDIS_CREDS, decode_responses=True)
 
     def connect(self):
         return self._redis_connection

@@ -12,6 +12,7 @@ requests_mock
 uuid
 vcrpy
 flask
+flask-marshmallow
 redis
 Celery
 gevent

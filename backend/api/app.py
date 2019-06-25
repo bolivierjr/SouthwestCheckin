@@ -1,21 +1,70 @@
 import os
-from flask import Flask, jsonify
+import json
+from flask import Flask, request, jsonify
+from api.extensions import ma
 from tasks import autocheckin
+from utils import RedisCache
+from marshmallow import ValidationError
+from api.schemas import CheckinSchema, InfoSchema
 
 
 def create_app():
     app = Flask(__name__)
     app.config["SECRET_KEY"] == os.getenv("SECRET_KEY")
 
-    @app.route("/api/checkin")
-    def index():
-        # Using fake parameters for testing right now. Make
-        # this accept real parameters from endpoint and clean
-        try:
-            autocheckin.delay("xxxxxx", "bruce", "olivier")
-        except (TypeError, Exception) as exc:
-            return jsonify({"error": f"{exc}"}), 500
+    # Initialize flask-marshmallow extension
+    ma.init_app(app)
 
-        return jsonify({"status": "ok"}), 201
+    redis_client = RedisCache().connect()
+
+    @app.route("/checkin", methods=["POST"])
+    def checkin():
+        try:
+            CheckinSerializer = CheckinSchema(strict=True)
+            checkin_data = CheckinSerializer.loads(request.data).data
+
+            confirmation = checkin_data.get("confirmation")
+            firstname = checkin_data.get("firstname")
+            lastname = checkin_data.get("lastname")
+
+            flight_confirm = redis_client.exists(confirmation)
+            running_task = redis_client.hget(confirmation, "running")
+
+            if flight_confirm and running_task == "True":
+                return jsonify(
+                    {"error": "Task already running for this confirmation number."}
+                ), 400
+
+            # Delete any existing messages if any
+            redis_client.hdel(confirmation, "messages")
+            # Run the auto_checkin script celery task in the background
+            autocheckin.delay(confirmation, firstname, lastname)
+
+        except ValidationError as exc:
+            return jsonify({"error": exc.messages}), 422
+
+        except (TypeError, Exception) as exc:
+            return jsonify({"error": exc}), 500
+
+        return jsonify(
+            {"status": "Created a new SouthwestCheckin task successfully"}
+        ), 201
+
+    @app.route("/info/<string:confirmation>", methods=["GET"])
+    def info(confirmation):
+        try:
+            checkin_info = redis_client.hgetall(confirmation)
+
+            if not checkin_info:
+                return jsonify(
+                    {"status": "No tasks running with this confirmation."}
+                ), 200
+
+            InfoSerializer = InfoSchema(strict=True)
+
+            return InfoSerializer.jsonify(checkin_info), 200
+        
+        except Exception as exc:
+            return jsonify({"error": exc}), 500
 
     return app
