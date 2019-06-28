@@ -16,3 +16,4 @@ flask-marshmallow
 redis
 Celery
 gevent
+flower

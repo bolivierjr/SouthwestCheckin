@@ -20,11 +20,12 @@ services:
       - './backend:/backend'
     ports:
       - 5000:5000
+      - 5555:5555
     expose:
       - 5000
+      - 5555
 
   celery:
-    container_name: celery-worker
     depends_on:
       - redis-cache
     env_file:
@@ -38,7 +39,7 @@ services:
         worker,
         --app=tasks.celery.app,
         --pool=gevent,
-        --concurrency=30,
+        --concurrency=40,
         --loglevel=INFO,
       ]
     restart: always

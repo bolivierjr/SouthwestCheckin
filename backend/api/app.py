@@ -1,10 +1,10 @@
 import os
 import json
-from flask import Flask, request, jsonify
-from api.extensions import ma
-from tasks import autocheckin
 from utils import RedisCache
+from tasks import autocheckin
+from api.extensions import ma
 from marshmallow import ValidationError
+from flask import Flask, request, jsonify
 from api.schemas import CheckinSchema, InfoSchema
 
 
@@ -63,7 +63,7 @@ def create_app():
             InfoSerializer = InfoSchema(strict=True)
 
             return InfoSerializer.jsonify(checkin_info), 200
-        
+
         except Exception as exc:
             return jsonify({"error": exc}), 500
 
