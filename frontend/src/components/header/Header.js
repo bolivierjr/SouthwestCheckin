@@ -1,7 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Menu } from 'semantic-ui-react';
+import './Header.css';
 
-function Header() {
-  return <div>I am the header</div>;
-}
+const Header = () => {
+  const [activeItem, setActiveItem] = useState('check-in');
+
+  const handleClick = (event, { name }) => setActiveItem(name);
+
+  return (
+    <Menu pointing secondary>
+      <Menu.Item className="brand" name="SW Checkin" color="blue" active />
+      <Menu.Menu position="right">
+        <Menu.Item
+          as={Link}
+          to="/"
+          name="check-in"
+          className="links"
+          active={activeItem === 'check-in'}
+          color="red"
+          onClick={handleClick}
+        />
+        <Menu.Item
+          as={Link}
+          to="/messages"
+          name="messages"
+          className="links"
+          active={activeItem === 'messages'}
+          color="orange"
+          onClick={handleClick}
+        />
+      </Menu.Menu>
+    </Menu>
+  );
+};
 
 export default Header;
