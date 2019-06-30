@@ -6,11 +6,17 @@ import './Header.css';
 const Header = () => {
   const [activeItem, setActiveItem] = useState('check-in');
 
+  /*
+    Click handler that takes in event target and name
+    property of the menu/navbar item and activates it
+    by triggering the activateItem state.
+  */
   const handleClick = (event, { name }) => setActiveItem(name);
 
   return (
     <Menu pointing secondary>
       <Menu.Item className="brand" name="SW Checkin" color="blue" active />
+
       <Menu.Menu position="right">
         <Menu.Item
           as={Link}
@@ -21,13 +27,14 @@ const Header = () => {
           color="red"
           onClick={handleClick}
         />
+
         <Menu.Item
           as={Link}
           to="/messages"
           name="messages"
           className="links"
           active={activeItem === 'messages'}
-          color="orange"
+          color="red"
           onClick={handleClick}
         />
       </Menu.Menu>

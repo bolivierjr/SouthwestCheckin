@@ -5,3 +5,13 @@
 .links {
   font-size: 1.2rem;
 }
+
+@media only screen and (max-width: 480px) {
+  .brand {
+    font-size: 1rem;
+  }
+
+  .links {
+    font-size: 1rem;
+  }
+}

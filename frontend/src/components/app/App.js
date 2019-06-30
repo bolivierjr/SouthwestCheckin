@@ -9,9 +9,9 @@ import { InfoScreen } from '../infoScreen';
 function App() {
   return (
     <BrowserRouter>
-      <Container style={{ margin: 20 }}>
+      <Container>
         <Header />
-        <Segment className="main-border">
+        <Segment color="orange" className="main-border">
           <Route exact path="/" component={CheckinForm} />
           <Route path="/messages" component={InfoScreen} />
         </Segment>
