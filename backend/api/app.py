@@ -48,7 +48,7 @@ def create_app():
 
         return jsonify(
             {"status": "Created a new SouthwestCheckin task successfully"}
-        ), 201
+        ), 200
 
     @app.route("/info/<string:confirmation>", methods=["GET"])
     def info(confirmation):

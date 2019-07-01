@@ -19,6 +19,8 @@ const validate = state => {
           };
         }
 
+        break;
+
       case 'firstname':
         if (value === '') {
           return {
@@ -28,24 +30,50 @@ const validate = state => {
           };
         }
 
+        break;
+
       case 'lastname':
         if (value === '') {
           return {
             ...state,
             error: true,
-            errMessage: 'Must enter in your last name'
+            errMessage: 'Must enter in your last name.'
           };
         }
 
+        break;
+
       case 'email':
-        if (value > 20) {
-          return;
+        // Regex to validate email
+        const emailRegex = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
+        if (value === '') {
+          continue;
+        } else if (!emailRegex.test(value)) {
+          return {
+            ...state,
+            error: true,
+            errMessage: 'Must enter in a valid email address.'
+          };
         }
 
+        break;
+
       case 'phone':
-        if (value > 20) {
-          return;
+        // Regex to validate US phone numbers only
+        const phoneRegex = /^([0-9]( |-)?)?(\(?[0-9]{3}\)?|[0-9]{3})( |-)?([0-9]{3}( |-)?[0-9]{4}|[a-zA-Z0-9]{7})$/;
+
+        if (value === '') {
+          continue;
+        } else if (!phoneRegex.test(value)) {
+          return {
+            ...state,
+            error: true,
+            errMessage: 'Must enter in a valid phone number.'
+          };
         }
+
+        break;
     }
   }
 

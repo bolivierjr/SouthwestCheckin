@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { Container, Form, Message } from 'semantic-ui-react';
+import { Container, Form, Message, Transition } from 'semantic-ui-react';
 import './CheckinForm.css';
 import { validate, useWindowDimensions } from '../../utils';
 
@@ -11,21 +11,26 @@ const CheckinForm = () => {
     email: '',
     phone: '',
     error: false,
-    errMessage: ''
+    success: false,
+    errMessage: '',
+    btnDisable: true
   };
 
   /*
-      useState hook for setting and getting
-      state of the component
-    */
+    useState hook for setting and getting
+    state of the component
+  */
   const [state, setState] = useState({ ...initialState });
 
+  /*
+    Hook made for getting current window dimensions.
+  */
   const { width } = useWindowDimensions();
 
   /*
-      A reference to the confirmation input
-      element to focus on render.
-    */
+    A reference to the confirmation input
+    element to focus on render.
+  */
   const inputConf = useRef(null);
 
   useEffect(() => {
@@ -33,24 +38,66 @@ const CheckinForm = () => {
   }, []);
 
   /*
-      On input change, the new input value 
-      is set in state, by input element name.
-    */
+    Input change event handler
+  */
   const handleChange = event => {
     const { name, value } = event.target;
 
-    setState({ ...state, [name]: value });
+    setState({ ...state, [name]: value, btnDisable: false });
   };
 
-  const handleSubmit = event => {
+  /*
+    Form submit event handler
+  */
+  const handleSubmit = async event => {
     event.preventDefault();
-    const result = validate({ ...state });
-    setState({ ...result });
+    const validationResult = validate({ ...state });
 
-    if (!result.error) {
-      setState(initialState);
+    setState({ ...validationResult, success: false });
+
+    if (!validationResult.error) {
+      const data = await fetchUrl();
+
+      if (data.error) {
+        setState({
+          ...state,
+          error: true,
+          success: false,
+          errMessage: data.error,
+          btnDisable: true
+        });
+      } else if (data.status) {
+        setState({
+          ...initialState,
+          error: false,
+          success: true,
+          btnDisable: true
+        });
+      }
     }
-    console.log(result);
+  };
+
+  const fetchUrl = async () => {
+    const { confirmation, firstname, lastname } = state;
+    try {
+      const response = await fetch('/checkin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          confirmation: confirmation,
+          firstname: firstname,
+          lastname: lastname
+        })
+      });
+
+      const data = await response.json();
+
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -58,14 +105,30 @@ const CheckinForm = () => {
       <Form
         size={width > 480 ? 'big' : 'small'}
         onSubmit={handleSubmit}
-        error={state.error}
+        success
+        error
       >
-        <Message
-          size="mini"
-          header="Invalid"
-          content={state.errMessage}
-          error
-        />
+        <Transition
+          visible={state.success}
+          animation="slide down"
+          duration={50}
+        >
+          <Message
+            size="mini"
+            header="Success"
+            content="Your task was sent successfully!"
+            success
+          />
+        </Transition>
+
+        <Transition visible={state.error} animation="slide up" duration={50}>
+          <Message
+            size="mini"
+            header="Invalid"
+            content={state.errMessage}
+            error
+          />
+        </Transition>
 
         <Form.Field required>
           <label>Confirmation</label>
@@ -118,7 +181,12 @@ const CheckinForm = () => {
           />
         </Form.Field>
 
-        <Form.Button color="blue" position="rightAlign" content="Submit" />
+        <Form.Button
+          color="blue"
+          position="rightAlign"
+          content="Submit"
+          disabled={state.btnDisable}
+        />
       </Form>
     </Container>
   );
