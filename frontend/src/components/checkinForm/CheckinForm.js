@@ -1,9 +1,9 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Form, Message, Transition } from 'semantic-ui-react';
 import './CheckinForm.css';
 import { validate, useWindowDimensions } from '../../utils';
 
-const CheckinForm = () => {
+const CheckinForm = ({ location, handlePath }) => {
   const initialFormValues = {
     confirmation: '',
     firstname: '',
@@ -21,10 +21,19 @@ const CheckinForm = () => {
 
   /*
     useState hooks for setting and getting
-    state of the component
+    state of the component.
   */
   const [formValues, setFormValues] = useState({ ...initialFormValues });
   const [state, setState] = useState({ ...initialState });
+
+  /*
+    The useEffect hook that handles the path
+    for the header to set active tab item
+    through a function prop.
+  */
+  useEffect(() => {
+    handlePath(location.pathname);
+  }, [handlePath, location.pathname]);
 
   /*
     Hook made for getting current window dimensions.
@@ -32,17 +41,9 @@ const CheckinForm = () => {
   const { width } = useWindowDimensions();
 
   /*
-    A reference to the confirmation input
-    element to focus on render.
-  */
-  const inputRef = useRef(null);
-
-  useEffect(() => {
-    inputRef.current.focus();
-  }, []);
-
-  /*
-    Input change event handler.
+    Input change event handler that
+    sets new values in formValue state
+    on every change in input.
   */
   const handleChange = event => {
     const { name, value } = event.target;
@@ -51,6 +52,10 @@ const CheckinForm = () => {
     setState({ ...state, btnDisable: false });
   };
 
+  /*
+    Event handler when input gets out of
+    focus and checks form validation.
+  */
   const handleBlur = event => {
     const { name, value } = event.target;
 
@@ -64,7 +69,9 @@ const CheckinForm = () => {
   };
 
   /*
-    Form submit event handler
+    Form submit event handler that checks
+    the form input validation and sets the
+    error and success alert messages.
   */
   const handleSubmit = async event => {
     for (const [name, value] of Object.entries(formValues)) {
@@ -107,6 +114,11 @@ const CheckinForm = () => {
     }
   };
 
+  /*
+    Function that makes a post ajax call to the
+    backend to start a checkin task and returns the
+    json data back.
+  */
   const fetchUrl = async () => {
     // **TODO** add in the email and phone for notifications
     const { confirmation, firstname, lastname } = formValues;
@@ -164,7 +176,6 @@ const CheckinForm = () => {
         <Form.Field required>
           <label>Confirmation</label>
           <input
-            ref={inputRef}
             name="confirmation"
             onChange={handleChange}
             onBlur={handleBlur}

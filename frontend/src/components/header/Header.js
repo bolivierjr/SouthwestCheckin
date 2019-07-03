@@ -1,18 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Menu } from 'semantic-ui-react';
 import './Header.css';
 
-const Header = () => {
-  const [activeItem, setActiveItem] = useState('check-in');
-
-  /*
-    Click handler that takes in event target and name
-    property of the menu/navbar item and activates it
-    by triggering the activateItem state.
-  */
-  const handleClick = (event, { name }) => setActiveItem(name);
-
+const Header = ({ path }) => {
   return (
     <Menu pointing secondary>
       <Menu.Item className="brand" name="SW Checkin" color="blue" active />
@@ -23,9 +14,8 @@ const Header = () => {
           to="/"
           name="check-in"
           className="links"
-          active={activeItem === 'check-in'}
+          active={path === '/'}
           color="red"
-          onClick={handleClick}
         />
 
         <Menu.Item
@@ -33,9 +23,8 @@ const Header = () => {
           to="/messages"
           name="messages"
           className="links"
-          active={activeItem === 'messages'}
+          active={path === '/messages'}
           color="red"
-          onClick={handleClick}
         />
       </Menu.Menu>
     </Menu>

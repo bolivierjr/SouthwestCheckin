@@ -3,15 +3,29 @@ import { Container, Segment, Form, Transition, Icon } from 'semantic-ui-react';
 import './InfoScreen.css';
 import { validate } from '../../utils';
 
-function InfoScreen() {
+function InfoScreen({ location, handlePath }) {
   const initialState = {
     messages: [],
     btnDisable: false,
     transition: false
   };
 
+  /*
+    useState hooks for setting and getting
+    state of the component
+  */
   const [state, setState] = useState({ ...initialState });
   const [confirmation, setConfirmation] = useState('');
+
+  /*
+    useEffect hook that handles the path
+    for the header to set active tab item
+    through a function prop.
+  */
+  useEffect(() => {
+    handlePath(location.pathname);
+  }, [handlePath, location.pathname]);
+
   /*
     A reference to the confirmation input
     element to focus on render.
@@ -22,10 +36,19 @@ function InfoScreen() {
     inputRef.current.focus();
   }, []);
 
+  /*
+    Input change event handler sets
+    new confirmation state vallues
+    on every change.
+  */
   const handleChange = event => {
     setConfirmation(event.target.value);
   };
 
+  /*
+    Event handler when input gets out of
+    focus and checks form validation.
+  */
   const handleBlur = event => {
     const formValidation = validate('confirmation', confirmation);
 
@@ -44,6 +67,11 @@ function InfoScreen() {
     }
   };
 
+  /*
+    Form submit event handler that checks
+    the form input validation and sets the
+    messages on the infoscreen.
+  */
   const handleSubmit = async event => {
     setState({ ...state, messages: [] });
 
@@ -76,6 +104,11 @@ function InfoScreen() {
     console.log(data);
   };
 
+  /*
+    Function that makes an ajax call to the
+    backend to check the status of the autocheckin
+    task.
+  */
   const fetchUrl = async () => {
     try {
       const response = await fetch(`/info/${confirmation}`, {
@@ -93,12 +126,10 @@ function InfoScreen() {
   };
 
   const messageItems = state.messages.map((message, index) => {
-    let fixedMessage = `${message}`;
-
     return (
       <p key={index}>
         <Icon size="small" name="angle double right" />
-        {fixedMessage}
+        {message}
       </p>
     );
   });
@@ -127,6 +158,11 @@ function InfoScreen() {
         <Form.Button
           color="blue"
           content="Submit"
+          /* 
+            Uncomment the line below if you want the
+            button to disable on form validations.
+          */
+
           // disabled={state.btnDisable}
         />
       </Form>

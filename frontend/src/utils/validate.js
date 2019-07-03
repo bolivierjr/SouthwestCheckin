@@ -1,3 +1,8 @@
+/*
+  Validation util helper that checks form validation
+  elements with the given name and value of input element.
+  Returns back any errors messages to use in the components.
+*/
 const validate = (name, value) => {
   switch (name) {
     case 'confirmation':
