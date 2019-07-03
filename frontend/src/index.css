@@ -3,6 +3,8 @@
   src: url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 }
 
-body {
+body,
+html {
   font-family: 'Roboto', sans-serif;
+  background-color: #fffffa;
 }

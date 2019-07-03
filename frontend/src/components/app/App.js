@@ -11,7 +11,7 @@ function App() {
     <BrowserRouter>
       <Container>
         <Header />
-        <Segment color="orange" className="main-border">
+        <Segment color="orange">
           <Route exact path="/" component={CheckinForm} />
           <Route path="/messages" component={InfoScreen} />
         </Segment>

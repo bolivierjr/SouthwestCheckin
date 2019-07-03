@@ -4,22 +4,26 @@ import './CheckinForm.css';
 import { validate, useWindowDimensions } from '../../utils';
 
 const CheckinForm = () => {
-  const initialState = {
+  const initialFormValues = {
     confirmation: '',
     firstname: '',
     lastname: '',
     email: '',
-    phone: '',
+    phone: ''
+  };
+
+  const initialState = {
     error: false,
     success: false,
     errMessage: '',
-    btnDisable: true
+    btnDisable: false
   };
 
   /*
-    useState hook for setting and getting
+    useState hooks for setting and getting
     state of the component
   */
+  const [formValues, setFormValues] = useState({ ...initialFormValues });
   const [state, setState] = useState({ ...initialState });
 
   /*
@@ -31,54 +35,81 @@ const CheckinForm = () => {
     A reference to the confirmation input
     element to focus on render.
   */
-  const inputConf = useRef(null);
+  const inputRef = useRef(null);
 
   useEffect(() => {
-    inputConf.current.focus();
+    inputRef.current.focus();
   }, []);
 
   /*
-    Input change event handler
+    Input change event handler.
   */
   const handleChange = event => {
     const { name, value } = event.target;
 
-    setState({ ...state, [name]: value, btnDisable: false });
+    setFormValues({ ...formValues, [name]: value });
+    setState({ ...state, btnDisable: false });
+  };
+
+  const handleBlur = event => {
+    const { name, value } = event.target;
+
+    const formValidation = validate(name, value);
+
+    setState({
+      ...formValues,
+      ...formValidation,
+      success: false
+    });
   };
 
   /*
     Form submit event handler
   */
   const handleSubmit = async event => {
-    event.preventDefault();
-    const validationResult = validate({ ...state });
+    for (const [name, value] of Object.entries(formValues)) {
+      let formValidation = validate(name, value);
 
-    setState({ ...validationResult, success: false });
-
-    if (!validationResult.error) {
-      const data = await fetchUrl();
-
-      if (data.error) {
+      if (formValidation.error) {
         setState({
-          ...state,
-          error: true,
+          ...formValidation,
           success: false,
-          errMessage: data.error,
           btnDisable: true
         });
-      } else if (data.status) {
-        setState({
-          ...initialState,
-          error: false,
-          success: true,
-          btnDisable: true
-        });
+
+        return;
       }
+    }
+
+    setState({ ...initialState });
+
+    const data = await fetchUrl();
+
+    if (data.error) {
+      console.log(data);
+      setState({
+        ...state,
+        error: true,
+        success: false,
+        errMessage: data.error,
+        btnDisable: true
+      });
+    } else if (data.status) {
+      setState({
+        ...initialState,
+        error: false,
+        success: true,
+        errMessage: '',
+        btnDisable: true
+      });
+
+      setFormValues({ ...initialFormValues });
     }
   };
 
   const fetchUrl = async () => {
-    const { confirmation, firstname, lastname } = state;
+    // **TODO** add in the email and phone for notifications
+    const { confirmation, firstname, lastname } = formValues;
     try {
       const response = await fetch('/checkin', {
         method: 'POST',
@@ -101,7 +132,7 @@ const CheckinForm = () => {
   };
 
   return (
-    <Container id="checkin-container">
+    <Container className="checkin-container">
       <Form
         size={width > 480 ? 'big' : 'small'}
         onSubmit={handleSubmit}
@@ -133,10 +164,11 @@ const CheckinForm = () => {
         <Form.Field required>
           <label>Confirmation</label>
           <input
-            ref={inputConf}
+            ref={inputRef}
             name="confirmation"
             onChange={handleChange}
-            value={state.confirmation}
+            onBlur={handleBlur}
+            value={formValues.confirmation}
             placeholder="Confirmation"
           />
         </Form.Field>
@@ -146,7 +178,8 @@ const CheckinForm = () => {
           <input
             name="firstname"
             onChange={handleChange}
-            value={state.firstname}
+            onBlur={handleBlur}
+            value={formValues.firstname}
             placeholder="First Name"
           />
         </Form.Field>
@@ -156,7 +189,8 @@ const CheckinForm = () => {
           <input
             name="lastname"
             onChange={handleChange}
-            value={state.lastname}
+            onBlur={handleBlur}
+            value={formValues.lastname}
             placeholder="Last Name"
           />
         </Form.Field>
@@ -166,7 +200,8 @@ const CheckinForm = () => {
           <input
             name="email"
             onChange={handleChange}
-            value={state.email}
+            onBlur={handleBlur}
+            value={formValues.email}
             placeholder="Optional Email Notification..."
           />
         </Form.Field>
@@ -176,14 +211,15 @@ const CheckinForm = () => {
           <input
             name="phone"
             onChange={handleChange}
-            value={state.phone}
+            onBlur={handleBlur}
+            value={formValues.phone}
             placeholder="Optional text notification..."
           />
         </Form.Field>
 
         <Form.Button
           color="blue"
-          position="rightAlign"
+          size="large"
           content="Submit"
           disabled={state.btnDisable}
         />

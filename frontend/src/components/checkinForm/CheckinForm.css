@@ -1,11 +1,11 @@
-#checkin-container {
+.checkin-container {
   padding: 30px;
   padding-left: 20%;
   padding-right: 20%;
 }
 
 @media only screen and (max-width: 480px) {
-  #checkin-container {
+  .checkin-container {
     padding: 0px;
   }
 }

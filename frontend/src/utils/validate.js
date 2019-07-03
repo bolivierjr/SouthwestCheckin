@@ -1,83 +1,75 @@
-const validate = state => {
-  const { confirmation, firstname, lastname, phone, email } = state;
-  const inputNames = { confirmation, firstname, lastname, phone, email };
+const validate = (name, value) => {
+  switch (name) {
+    case 'confirmation':
+      if (value === '') {
+        return {
+          error: true,
+          errMessage: 'Must enter in a confirmation.'
+        };
+      } else if (value.length !== 6) {
+        return {
+          error: true,
+          errMessage: 'Confirmation must be 6 characters.'
+        };
+      }
 
-  for (const [name, value] of Object.entries(inputNames)) {
-    switch (name) {
-      case 'confirmation':
-        if (value === '') {
-          return {
-            ...state,
-            error: true,
-            errMessage: 'Must enter in a confirmation.'
-          };
-        } else if (value.length !== 6) {
-          return {
-            ...state,
-            error: true,
-            errMessage: 'Confirmation must be 6 characters.'
-          };
-        }
+      break;
 
-        break;
+    case 'firstname':
+      if (value === '') {
+        return {
+          error: true,
+          errMessage: 'Must enter in your first name.'
+        };
+      }
 
-      case 'firstname':
-        if (value === '') {
-          return {
-            ...state,
-            error: true,
-            errMessage: 'Must enter in your first name.'
-          };
-        }
+      break;
 
-        break;
+    case 'lastname':
+      if (value === '') {
+        return {
+          error: true,
+          errMessage: 'Must enter in your last name.'
+        };
+      }
 
-      case 'lastname':
-        if (value === '') {
-          return {
-            ...state,
-            error: true,
-            errMessage: 'Must enter in your last name.'
-          };
-        }
+      break;
 
-        break;
+    case 'email':
+      // Regex to validate email
+      const emailRegex = /^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,4})$/;
 
-      case 'email':
-        // Regex to validate email
-        const emailRegex = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+      if (value === '') {
+        return { error: false, errMessage: '' };
+      } else if (!emailRegex.test(value)) {
+        return {
+          error: true,
+          errMessage: 'Must enter in a valid email address.'
+        };
+      }
 
-        if (value === '') {
-          continue;
-        } else if (!emailRegex.test(value)) {
-          return {
-            ...state,
-            error: true,
-            errMessage: 'Must enter in a valid email address.'
-          };
-        }
+      break;
 
-        break;
+    case 'phone':
+      // Regex to validate US phone numbers only
+      const phoneRegex = /^([0-9]( |-)?)?(\(?[0-9]{3}\)?|[0-9]{3})( |-)?([0-9]{3}( |-)?[0-9]{4}|[a-zA-Z0-9]{7})$/;
 
-      case 'phone':
-        // Regex to validate US phone numbers only
-        const phoneRegex = /^([0-9]( |-)?)?(\(?[0-9]{3}\)?|[0-9]{3})( |-)?([0-9]{3}( |-)?[0-9]{4}|[a-zA-Z0-9]{7})$/;
+      if (value === '') {
+        return { error: false, errMessage: '' };
+      } else if (!phoneRegex.test(value)) {
+        return {
+          error: true,
+          errMessage: 'Must enter in a valid phone number.'
+        };
+      }
 
-        if (value === '') {
-          continue;
-        } else if (!phoneRegex.test(value)) {
-          return {
-            ...state,
-            error: true,
-            errMessage: 'Must enter in a valid phone number.'
-          };
-        }
+      break;
 
-        break;
-    }
+    default:
+      break;
   }
 
-  return { ...state, error: false };
+  return { error: false, errMessage: '' };
 };
 
 export default validate;

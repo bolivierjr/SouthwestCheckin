@@ -1,0 +1,25 @@
+.message-container {
+  padding: 30px;
+  padding-left: 15%;
+  padding-right: 15%;
+}
+
+.screen {
+  background-color: #1b2c3d !important;
+  color: #ffffff;
+  min-height: 400px;
+}
+
+.message-input {
+  width: 50% !important;
+}
+
+@media only screen and (max-width: 480px) {
+  .message-container {
+    padding: 0px;
+  }
+
+  .screen {
+    min-height: 350px;
+  }
+}
