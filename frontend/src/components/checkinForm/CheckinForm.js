@@ -123,7 +123,7 @@ const CheckinForm = ({ location, handlePath }) => {
     // **TODO** add in the email and phone for notifications
     const { confirmation, firstname, lastname } = formValues;
     try {
-      const response = await fetch('/checkin', {
+      const response = await fetch('/api/checkin', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

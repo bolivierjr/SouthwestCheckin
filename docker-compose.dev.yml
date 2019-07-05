@@ -6,7 +6,7 @@ services:
     ports:
       - '6379:6379'
 
-  checkin-api:
+  api:
     container_name: checkin-api
     depends_on:
       - redis-cache
@@ -19,11 +19,7 @@ services:
     volumes:
       - './backend:/backend'
     ports:
-      - 5000:5000
-      - 5555:5555
-    expose:
-      - 5000
-      - 5555
+      - '5555:5555'
 
   celery:
     depends_on:
@@ -45,3 +41,26 @@ services:
     restart: always
     volumes:
       - './backend:/backend'
+
+  client:
+    depends_on:
+      - api
+    container_name: checkin-client
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+
+    volumes:
+      - /app/node_modules
+      - ./frontend:/app
+
+  nginx-proxy:
+    container_name: nginx
+    build:
+      context: ./nginx-proxy
+      dockerfile: Dockerfile.dev
+    restart: always
+    depends_on:
+      - client
+    ports:
+      - '8080:8080'

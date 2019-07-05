@@ -111,7 +111,7 @@ function InfoScreen({ location, handlePath }) {
   */
   const fetchUrl = async () => {
     try {
-      const response = await fetch(`/info/${confirmation}`, {
+      const response = await fetch(`/api/info/${confirmation}`, {
         headers: {
           'Content-Type': 'application/json'
         }
