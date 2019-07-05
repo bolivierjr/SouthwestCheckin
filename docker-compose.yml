@@ -2,17 +2,17 @@ version: '3.6'
 services:
   redis-cache:
     image: redis:alpine
-    container_name: redis-cache
+    ports:
+      - '6379:6379'
 
   api:
-    container_name: checkin-api
     depends_on:
       - redis-cache
     env_file:
-      - backend/.env.dev
+      - backend/.env
     build:
       context: ./backend
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     restart: always
     volumes:
       - './backend:/backend'
@@ -23,10 +23,10 @@ services:
     depends_on:
       - redis-cache
     env_file:
-      - backend/.env.dev
+      - backend/.env
     build:
       context: ./backend
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     command:
       [
         celery,
@@ -43,22 +43,34 @@ services:
   client:
     depends_on:
       - api
-    container_name: checkin-client
     build:
       context: ./frontend
-      dockerfile: Dockerfile.dev
-
+      dockerfile: Dockerfile
     volumes:
       - /app/node_modules
       - ./frontend:/app
 
-  nginx-proxy:
-    container_name: nginx
+  nginx:
     image: nginx:alpine
     restart: always
     depends_on:
       - client
+      - certbot
     volumes:
-      - ./nginx-proxy/dev.default.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx-proxy/prod.default.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx-proxy/certbot/conf:/etc/letsencrypt
+      - ./nginx-proxy/certbot/www:/var/www/certbot
     ports:
-      - '8080:8080'
+      - '80:80'
+      - '443:443'
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+
+  certbot:
+    image: certbot/certbot
+    restart: always
+    depends_on:
+      - client
+    volumes:
+      - ./nginx-proxy/certbot/conf:/etc/letsencrypt
+      - ./nginx-proxy/certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"

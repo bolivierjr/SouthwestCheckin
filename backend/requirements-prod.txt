@@ -1,0 +1,17 @@
+datetime
+docopts
+pytest-cov
+pytest-mock
+python-dateutil
+pytz
+requests
+requests_mock
+uuid
+vcrpy
+flask
+flask-marshmallow
+redis
+Celery
+gevent
+flower
+gunicorn

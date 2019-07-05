@@ -17,3 +17,4 @@ redis
 Celery
 gevent
 flower
+gunicorn
