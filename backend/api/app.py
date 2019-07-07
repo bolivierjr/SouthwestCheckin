@@ -26,6 +26,8 @@ def create_app():
             confirmation = checkin_data.get("confirmation")
             firstname = checkin_data.get("firstname")
             lastname = checkin_data.get("lastname")
+            email = checkin_data.get("email")
+            phone = checkin_data.get("phone")
 
             flight_confirm = redis_client.exists(confirmation)
             running_task = redis_client.hget(confirmation, "running")
@@ -37,18 +39,27 @@ def create_app():
 
             # Delete any existing messages if any
             redis_client.hdel(confirmation, "messages")
+
+            # Check if there are any optional email or phone fields
+            # sent to get a notification back on checkin.
+            notifications = []
+            if email is not None:
+                notifications.append({'mediaType': 'EMAIL', 'emailAddress': email})
+            if phone is not None:
+                notifications.append({'mediaType': 'SMS', 'phoneNumber': phone})
+
             # Run the auto_checkin script celery task in the background
-            autocheckin.delay(confirmation, firstname, lastname)
+            autocheckin.delay(confirmation, firstname, lastname, notifications)
+
+            return jsonify(
+                {"status": "Created a new SouthwestCheckin task successfully"}
+            ), 200
 
         except ValidationError as exc:
             return jsonify({"error": exc.messages}), 422
 
-        except (TypeError, Exception) as exc:
-            return jsonify({"error": exc}), 500
-
-        return jsonify(
-            {"status": "Created a new SouthwestCheckin task successfully"}
-        ), 200
+        except (TypeError, Exception):
+            return jsonify({"error": "There was an error. Contact admin at once."}), 500
 
     @app.route("/info/<string:confirmation>", methods=["GET"])
     def info(confirmation):
@@ -65,6 +76,6 @@ def create_app():
             return InfoSerializer.jsonify(checkin_info), 200
 
         except Exception as exc:
-            return jsonify({"error": exc}), 500
+            return jsonify({"error": "There was an error. Contact admin at once."}), 500
 
     return app

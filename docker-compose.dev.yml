@@ -17,6 +17,7 @@ services:
     volumes:
       - './backend:/backend'
     ports:
+      - '5000:5000'
       - '5555:5555'
 
   celery:

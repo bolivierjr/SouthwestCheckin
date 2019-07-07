@@ -10,7 +10,7 @@ redis_client = RedisCache().connect()
 
 
 @app.task(bind=True)
-def autocheckin(self, confirmation, firstname, lastname, notifications=[]):
+def autocheckin(self, confirmation, firstname, lastname, notifications):
     try:
         redis_client.hset(confirmation, "running", "True")
         redis_client.expire(confirmation, timedelta(days=60))

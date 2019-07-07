@@ -93,12 +93,19 @@ const CheckinForm = ({ location, handlePath }) => {
     const data = await fetchUrl();
 
     if (data.error) {
-      console.log(data);
+      // Checks if any frontend validations were missed
+      // and catches the validation errors sent by api
+      // without knowing the proper key in object sent.
+      const error =
+        typeof data.error === 'string'
+          ? data.error
+          : data.error[Object.keys(data.error)[0]];
+
       setState({
         ...state,
         error: true,
         success: false,
-        errMessage: data.error,
+        errMessage: error,
         btnDisable: true
       });
     } else if (data.status) {
@@ -120,8 +127,7 @@ const CheckinForm = ({ location, handlePath }) => {
     json data back.
   */
   const fetchUrl = async () => {
-    // **TODO** add in the email and phone for notifications
-    const { confirmation, firstname, lastname } = formValues;
+    const { email, phone } = formValues;
     try {
       const response = await fetch('/api/checkin', {
         method: 'POST',
@@ -129,9 +135,9 @@ const CheckinForm = ({ location, handlePath }) => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          confirmation: confirmation,
-          firstname: firstname,
-          lastname: lastname
+          ...formValues,
+          email: email === '' ? null : email,
+          phone: phone === '' ? null : phone
         })
       });
 
