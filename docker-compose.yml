@@ -2,8 +2,6 @@ version: '3.6'
 services:
   redis-cache:
     image: redis:alpine
-    ports:
-      - '6379:6379'
 
   api:
     depends_on:
