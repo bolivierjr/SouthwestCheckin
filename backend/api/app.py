@@ -1,10 +1,10 @@
 import os
-import json
 from utils import RedisCache
 from tasks import autocheckin
 from api.extensions import ma
 from marshmallow import ValidationError
 from flask import Flask, request, jsonify
+from redis.exceptions import ConnectionError
 from api.schemas import CheckinSchema, InfoSchema
 
 
@@ -34,7 +34,7 @@ def create_app():
 
             if flight_confirm and running_task == "True":
                 return jsonify(
-                    {"error": "Task already running for this confirmation number."}
+                    {"error": "A task is already running for this confirmation."}
                 ), 400
 
             # Delete any existing messages if any
@@ -44,9 +44,13 @@ def create_app():
             # sent to get a notification back on checkin.
             notifications = []
             if email is not None:
-                notifications.append({'mediaType': 'EMAIL', 'emailAddress': email})
+                notifications.append(
+                    {'mediaType': 'EMAIL', 'emailAddress': email}
+                )
             if phone is not None:
-                notifications.append({'mediaType': 'SMS', 'phoneNumber': phone})
+                notifications.append(
+                    {'mediaType': 'SMS', 'phoneNumber': phone}
+                )
 
             # Run the auto_checkin script celery task in the background
             autocheckin.delay(confirmation, firstname, lastname, notifications)
@@ -58,8 +62,10 @@ def create_app():
         except ValidationError as exc:
             return jsonify({"error": exc.messages}), 422
 
-        except (TypeError, Exception):
-            return jsonify({"error": "There was an error. Contact admin at once."}), 500
+        except (ConnectionError, TypeError, Exception):
+            return jsonify(
+                {"error": "There was an error. Contact admin at once."}
+            ), 500
 
     @app.route("/info/<string:confirmation>", methods=["GET"])
     def info(confirmation):
@@ -75,7 +81,9 @@ def create_app():
 
             return InfoSerializer.jsonify(checkin_info), 200
 
-        except Exception as exc:
-            return jsonify({"error": "There was an error. Contact admin at once."}), 500
+        except (ConnectionError, Exception):
+            return jsonify(
+                {"error": "There was an error. Contact admin at once."}
+            ), 500
 
     return app

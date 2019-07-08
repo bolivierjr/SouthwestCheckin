@@ -5,14 +5,14 @@ from marshmallow import fields, validate, ValidationError
 
 
 def _validate_phone(data):
-        if data:
-            match = re.match(
-                "^([0-9]( |-)?)?(\(?[0-9]{3}\)?|[0-9]{3})( |-)?([0-9]{3}( |-)?[0-9]{4}|[a-zA-Z0-9]{7})$",
-                data
-            )
+    if data:
+        match = re.match(
+            "^([0-9]( |-)?)?(\(?[0-9]{3}\)?|[0-9]{3})( |-)?([0-9]{3}( |-)?[0-9]{4}|[a-zA-Z0-9]{7})$",
+            data
+        )
 
-            if not match:
-                raise ValidationError("Must enter in a valid phone number.")
+        if not match:
+            raise ValidationError("Must enter in a valid phone number.")
 
 
 class CheckinSchema(ma.Schema):
@@ -32,5 +32,5 @@ class InfoSchema(ma.Schema):
     def _deserialize_and_remove_duplicates(self, obj):
         data = obj["messages"]
         deserialized_data = json.loads(data)
-        
+
         return list(dict.fromkeys(deserialized_data))
