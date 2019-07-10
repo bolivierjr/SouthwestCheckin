@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Container, Segment, Form, Transition, Icon } from 'semantic-ui-react';
 import './InfoScreen.css';
-import { validate } from '../../utils';
+import { validate, useWindowDimensions } from '../../utils';
 
 function InfoScreen({ location, handlePath }) {
   const initialState = {
@@ -25,6 +25,11 @@ function InfoScreen({ location, handlePath }) {
   useEffect(() => {
     handlePath(location.pathname);
   }, [handlePath, location.pathname]);
+
+  /*
+    Hook made for getting current window dimensions.
+  */
+  const { width } = useWindowDimensions();
 
   /*
     A reference to the confirmation input
@@ -142,7 +147,7 @@ function InfoScreen({ location, handlePath }) {
         </Transition>
       </Segment>
 
-      <Form onSubmit={handleSubmit}>
+      <Form size={width > 480 ? 'big' : 'small'} onSubmit={handleSubmit}>
         <Form.Field>
           <label>Confirmation</label>
           <input
