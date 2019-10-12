@@ -24,6 +24,7 @@ venv/
 
 # production
 */build/
+*/certbot
 
 # misc
 .DS_Store
