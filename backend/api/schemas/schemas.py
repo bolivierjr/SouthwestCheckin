@@ -16,9 +16,9 @@ def _validate_phone(data):
 
 
 class CheckinSchema(ma.Schema):
-    confirmation = fields.String(required=True, validate=validate.Length(1))
-    firstname = fields.String(required=True, validate=validate.Length(1))
-    lastname = fields.String(required=True, validate=validate.Length(1))
+    confirmation = fields.String(required=True, validate=validate.Length(min=1))
+    firstname = fields.String(required=True, validate=validate.Length(min=1))
+    lastname = fields.String(required=True, validate=validate.Length(min=1))
     email = fields.Email(allow_none=True)
     phone = fields.String(allow_none=True, validate=_validate_phone)
 

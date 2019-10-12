@@ -20,8 +20,8 @@ def create_app():
     @app.route("/checkin", methods=["POST"])
     def checkin():
         try:
-            CheckinSerializer = CheckinSchema(strict=True)
-            checkin_data = CheckinSerializer.loads(request.data).data
+            CheckinSerializer = CheckinSchema()
+            checkin_data = CheckinSerializer.loads(request.data)
 
             confirmation = checkin_data.get("confirmation")
             firstname = checkin_data.get("firstname")
@@ -77,7 +77,7 @@ def create_app():
                     {"status": "No tasks running with this confirmation."}
                 ), 200
 
-            InfoSerializer = InfoSchema(strict=True)
+            InfoSerializer = InfoSchema()
 
             return InfoSerializer.jsonify(checkin_info), 200
 
