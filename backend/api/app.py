@@ -33,9 +33,12 @@ def create_app():
             running_task = redis_client.hget(confirmation, "running")
 
             if flight_confirm and running_task == "True":
-                return jsonify(
-                    {"error": "A task is already running for this confirmation."}
-                ), 400
+                return (
+                    jsonify(
+                        {"error": "A task is already running for this confirmation."}
+                    ),
+                    400,
+                )
 
             # Delete any existing messages if any
             redis_client.hdel(confirmation, "messages")
@@ -44,28 +47,23 @@ def create_app():
             # sent to get a notification back on checkin.
             notifications = []
             if email is not None:
-                notifications.append(
-                    {'mediaType': 'EMAIL', 'emailAddress': email}
-                )
+                notifications.append({"mediaType": "EMAIL", "emailAddress": email})
             if phone is not None:
-                notifications.append(
-                    {'mediaType': 'SMS', 'phoneNumber': phone}
-                )
+                notifications.append({"mediaType": "SMS", "phoneNumber": phone})
 
             # Run the auto_checkin script celery task in the background
             autocheckin.delay(confirmation, firstname, lastname, notifications)
 
-            return jsonify(
-                {"status": "Created a new SouthwestCheckin task successfully"}
-            ), 200
+            return (
+                jsonify({"status": "Created a new SouthwestCheckin task successfully"}),
+                200,
+            )
 
         except ValidationError as exc:
             return jsonify({"error": exc.messages}), 422
 
         except (ConnectionError, TypeError, Exception):
-            return jsonify(
-                {"error": "There was an error. Contact admin at once."}
-            ), 500
+            return jsonify({"error": "There was an error. Contact admin at once."}), 500
 
     @app.route("/info/<string:confirmation>", methods=["GET"])
     def info(confirmation):
@@ -73,17 +71,16 @@ def create_app():
             checkin_info = redis_client.hgetall(confirmation)
 
             if not checkin_info:
-                return jsonify(
-                    {"status": "No tasks running with this confirmation."}
-                ), 200
+                return (
+                    jsonify({"status": "No tasks running with this confirmation."}),
+                    200,
+                )
 
             InfoSerializer = InfoSchema()
 
             return InfoSerializer.jsonify(checkin_info), 200
 
         except (ConnectionError, Exception):
-            return jsonify(
-                {"error": "There was an error. Contact admin at once."}
-            ), 500
+            return jsonify({"error": "There was an error. Contact admin at once."}), 500
 
     return app

@@ -1,9 +1,6 @@
 reservation_resp = {
     "viewReservationViewPage": {
-        "dates": {
-            "first": "2019-10-25",
-            "second": "2019-10-25"
-        },
+        "dates": {"first": "2019-10-25", "second": "2019-10-25"},
         "messages": None,
         "checkInIneligibilityReason": None,
         "greyBoxMessage": None,
@@ -13,13 +10,13 @@ reservation_resp = {
             "name": "Denver",
             "state": "CO",
             "code": "DEN",
-            "country": None
+            "country": None,
         },
         "destinationAirport": {
             "name": "Phoenix",
             "state": "AZ",
             "code": "PHX",
-            "country": None
+            "country": None,
         },
         "companion": None,
         "passengers": [
@@ -32,7 +29,7 @@ reservation_resp = {
                 "checkInIneligibilityReason": None,
                 "isCheckedIn": False,
                 "isCheckInEligible": False,
-                "isUnaccompaniedMinor": False
+                "isUnaccompaniedMinor": False,
             }
         ],
         "confirmationNumber": "MR6D6N",
@@ -50,8 +47,8 @@ reservation_resp = {
                         "aircraftInfo": {
                             "aircraftType": "Boeing 737-700",
                             "numberOfSeats": 143,
-                            "wifiSupported": True
-                        }
+                            "wifiSupported": True,
+                        },
                     }
                 ],
                 "travelTime": "1h 55m",
@@ -61,24 +58,21 @@ reservation_resp = {
                     "name": "Denver",
                     "state": "CO",
                     "code": "DEN",
-                    "country": None
+                    "country": None,
                 },
                 "arrivalTime": "16:35",
                 "arrivalAirport": {
                     "name": "Phoenix",
                     "state": "AZ",
                     "code": "PHX",
-                    "country": None
+                    "country": None,
                 },
-                "passengerTypeCounts": {
-                    "adult": 1,
-                    "senior": 0
-                },
+                "passengerTypeCounts": {"adult": 1, "senior": 0},
                 "fareType": "Anytime",
                 "boundType": "DEPARTING",
                 "standbyFlight": None,
                 "stops": [],
-                "isNextDayArrival": False
+                "isNextDayArrival": False,
             },
             {
                 "departureStatus": None,
@@ -92,8 +86,8 @@ reservation_resp = {
                         "aircraftInfo": {
                             "aircraftType": "Boeing 737-700",
                             "numberOfSeats": 143,
-                            "wifiSupported": True
-                        }
+                            "wifiSupported": True,
+                        },
                     }
                 ],
                 "travelTime": "1h 40m",
@@ -103,25 +97,22 @@ reservation_resp = {
                     "name": "Phoenix",
                     "state": "AZ",
                     "code": "PHX",
-                    "country": None
+                    "country": None,
                 },
                 "arrivalTime": "15:37",
                 "arrivalAirport": {
                     "name": "Denver",
                     "state": "CO",
                     "code": "DEN",
-                    "country": None
+                    "country": None,
                 },
-                "passengerTypeCounts": {
-                    "adult": 1,
-                    "senior": 0
-                },
+                "passengerTypeCounts": {"adult": 1, "senior": 0},
                 "fareType": "Anytime",
                 "boundType": "RETURNING",
                 "standbyFlight": None,
                 "stops": [],
-                "isNextDayArrival": False
-            }
+                "isNextDayArrival": False,
+            },
         ],
         "pageHeader": "DEN - PHX",
         "shareDetails": {
@@ -138,7 +129,7 @@ reservation_resp = {
                     "stops": None,
                     "arrivalInfo": "Arrives: 01:20 PM PHX",
                     "arrivalDateTime": "2019-10-25T16:35:00.000-07:00",
-                    "travelTime": "Travel time: 1hr 55 mins"
+                    "travelTime": "Travel time: 1hr 55 mins",
                 },
                 {
                     "header": "Returning Flight: Mon, Oct 21, 2019",
@@ -149,9 +140,9 @@ reservation_resp = {
                     "stops": None,
                     "arrivalInfo": "Arrives: 10:50 AM DEN",
                     "arrivalDateTime": "2019-10-21T15:39:00.000-06:00",
-                    "travelTime": "Travel time: 1hr 40 mins"
-                }
-            ]
+                    "travelTime": "Travel time: 1hr 40 mins",
+                },
+            ],
         },
         "hasAnyCancelledFlights": False,
         "isCheckInEligible": False,
@@ -179,30 +170,22 @@ reservation_resp = {
                     "query": {
                         "first-name": "John",
                         "last-name": "Doe",
-                        "passenger-reference": "2"
-                    }
+                        "passenger-reference": "2",
+                    },
                 }
-            ]
+            ],
         },
-        "hasUnaccompaniedMinor": False
+        "hasUnaccompaniedMinor": False,
     }
 }
 
 checkin_get_resp = {
     "checkInSessionToken": "ewogICJwbnIiIDogewogICAgImNvbmZpcm1hdGlvbk51bWJlciIgOiAiTVI2RDZOIiwKICAgICJwYXNzZW5nZXJzIiA6IFsgIk1pY2hhZWwgVGV0bG93IiBdLAogICAgInBhc3NlbmdlcnNOYW1lcyIgOiBbIHsKICAgICAgImZpcnN0TmFtZSIgOiAiTUlDSEFFTCIsCiAgICAgICJsYXN0TmFtZSIgOiAiVEVUTE9XIgogICAgfSBdCiAgfSwKICAiY2FyZHMiIDogWyB7CiAgICAiZGF0ZXMiIDogewogICAgICAiZmlyc3QiIDogIjIwMTktMTAtMjAiCiAgICB9LAogICAgImRlc3RpbmF0aW9uRGVzY3JpcHRpb24iIDogIlBob2VuaXgiLAogICAgImRlcGFydHVyZURhdGUiIDogIjIwMTktMTAtMjAiLAogICAgImRlcGFydHVyZUFpcnBvcnQiIDogIkRFTiIsCiAgICAiZGVwYXJ0dXJlVGltZSIgOiAiMTI6MjUiLAogICAgImFycml2YWxBaXJwb3J0IiA6ICJQSFgiLAogICAgImFycml2YWxUaW1lIiA6ICIxMzoyMCIsCiAgICAiZmxpZ2h0cyIgOiBbIHsKICAgICAgImZsaWdodE51bWJlciIgOiAiMzU1NiIsCiAgICAgICJoYXNXaWZpIiA6IHRydWUsCiAgICAgICJ0cmF2ZWxUaW1lIiA6ICIxaCA1NW0iLAogICAgICAiYXFxU3RhdHVzIiA6ICJUU0FfUFJFX0NIRUNLIiwKICAgICAgIm9yaWdpbkFpcnBvcnRDb2RlIiA6ICJERU4iLAogICAgICAiZGVzdGluYXRpb25BaXJwb3J0Q29kZSIgOiAiUEhYIiwKICAgICAgImRlc3RpbmF0aW9uU3RhdGlvbk5hbWUiIDogIlBob2VuaXgiLAogICAgICAiZGVwYXJ0dXJlRGF0ZSIgOiAiT2N0IDIwIiwKICAgICAgImRlcGFydHVyZUdhdGUiIDogIkM0OSIsCiAgICAgICJkZXBhcnR1cmVUaW1lIiA6ICIxMjoyNSIKICAgIH0gXSwKICAgICJ0cmF2ZWxUaW1lIiA6ICIxaCA1NW0iLAogICAgImludGVybmF0aW9uYWwiIDogZmFsc2UKICB9IF0sCiAgImFpclRyYXZlbFRva2VuIiA6ICJleUpoYkdjaU9pSmthWElpTENKbGJtTWlPaUpCTVRJNFEwSkRMVWhUTWpVMkluMC4uZE45WF9hV3J4R2VYanBKNE5BcDhOZy5EcF9ZRkN4U0xURi13T3VEMTYyXzdySWhOczRWd0IxRFBUWmtBS01Fa3l3anJxeWJSeUh6QnVmMHl4dDU1TklDV1p2Q3J2NG4yV0oxc0I4UUdyRENtMi1idzRyQWRROFUyMF81UVlhd1dfRmI3RWxFbzZLajFwUVJJbzFwLWM1UnQ5T1RTb1ZnSVRWNTliWVl0ZGhNR0xjSTE0dlVfdlJEY0ZrWThtc043OTR3UC1yRE1wZW1yS3BOcFBtN2lQT2gxdG9rZWNKX2NlUVVXR2VKR05MVG41YlJ4WmV3ZTFPaDZROHdsREp6MGc1VFVnaUQzZ25Hdm1Zb3RYRW4wU053WXQ4bWFJNlpuWC1WRGV3a0pMaklmVzc0djgwN2dNelBDLWxvcGZhSVBUeXROWDBfTmd0blpLVFVhQ25SNjVFdk83bFBEcVRqYVFydU5DZFh5VGNCbDgxRmt0YkNDckxqZVhpUjZFNUk5YW9JaDM4akNUN1pBM243QnE4d243VnF6clRfMV9kSnlieG1nSUUtd3N0c0l5M2lLV0VTTV9BWlJ2V0JYNmxGZ1ZKSFZ5UDZELTFOcmJIckRyYkowc0x6WkxpUUJCZDhZdkhqcTVBbGlBYUZnSlZ2bTh5SjE1RkRmQVFPWjV5TXVDUi1GUWV5MzF6Q09zZllHdFpxV2dDb091dk5kVzhNZDVCbTJOa3gtSXZKNjdIcnlXbWl3Z3JlYW1oakM1blpmb2lnQ2dqQlRBY3BZc050Q3VPWWZULWtWQzNpVGlyVk91NWR3OVBMdlhIdnBTcTZtbXotU2p0bnQ1dnliU2J1bUdTZGJFcENYNVpsUTluclhqRXBHeVNDcm80aDNfVWhadHBKVlQycTdfdFBybjkxRWlxakN1Q3p5ZndtQ01VQlpYVGFfWmY1RWZ4SEtLUHdsblltdUd6eWo4Rm9xTXhKUV9WUlplZXd3LWZTakZMdU5EeUxYcmlUb2Qzb29NQXpwZkJ4OUl0VHFVQXdWRTRSVlg2Q2Z5R21IeVlZWjJQa3cxakhzcjE3ejdSNlNtLUM4b1RKMzBuY0x3WnpNd1BOdzdndGJPNWFsUVNHQ2VhMjRCUks5OWVfekYwZER5cHI1RkpKS1hEcVE2REI3MDA3RFNKVEZJM2U2Vl9CZHk0VE5mYmo5SjRGZkhQYkphVjJRMFNrU1lHNWVQMGstYTZBQWFYRE9Gc29vZlRldXhfb09SVVhyRnJLM3lZekd4NFZVT3V3UUZTVEEwdUxwUkhUQ2lGcktwYjdWMFB3V1VUZlY4eUV0NkhBYlZNcWJZaHItUUJIR01JYS0zNDN0a2pwbGtTM0FUUzVCcl9ETUdRZ0RsZl9Rc1BtTzQzUHNHZmxuMGc3S1FsN2hVU011ck9qZDE3VFd0RnBRTE9jQ3dQTkk3MldvTnh3ZmJRVW95ZXl4RV94RVBzTG44MjVBUW95MFlTMWVPSFVwd1JaeVJFUEpVdHRjd1lCYVF4T0gzcnlDRmNzMGNsbUM4amJPTnRmMkhHQzFqN3lyZTYxc2ZkNTFTZ214bjdia1pkN3FrS0VpTjZQajFMYk9IMDVpQnVJb1NrWXNhNTRTV3hiWUdzaVQwTUpUM3pyQm81Q3Z0TXpTVGF1Q1lqRzBpVnFqVVNPQ2ZyYXNld3pMWWNvT1Y2Sllxb3k2dlBHRXZNMUpLdklUY3pmVVZNMUJkbDJNM1ZGN2p3QkVab012WWpwOU4yTWFMQm1DMk5GQlcwaHZ6alhyNDZYMHh4WXMxRE9ycDVXZGFzSUZsdjZkTGg2ZzVEQW9Db0RET3hXZG9MSG45U1NwXzFwZDc0cGdVYmtxTjZEODlMbjhRekJ5QmcxOUlSV2JJQ2VqNjM3LXMzMzF2SW42eko1MXFrWFhBRXloQTBHdUpUTWEwcTFaSkQwMmNLeXhnRFNqNjlmZWQ1VGM1d2gzZzZVWW8zeE9ibElGLUdyM2Q3d1dwS2gtRkdTZTNYZ3RMOVFSSm1MWmJ1TEw1Z0pqOWM4RzBBZ2hud01ZWFJKc2FrV3V1eWszQ21QeWJHdkFnWWNXZllvdlJWbC1FR1lBX0cxNlZJOGZFc0lpR1pIV1drdmc3bUU2OVF2SGFLeEo3c2pLbENwV2dWU0tQTENRS0lvQ08zblBnOXlmakN0d2FMUDRCWV9BUnVIa2g2NXBBeGdWdUV3TVhtQXh6eGdUNFlyNmhlb1pUaVowLXlXQnRjaUxRcHpEWW84Uk5WWEdQekZnVkt1RFg1T3lkcHhmdF9raUhnWDlkaHB1MUtmbmU3cnVGa202ak1WaEJMR2JWajRJRW05TnhEenpKNkRTOW1BRGxXOWRldjBvXy1WZGNkcXB6ejV5bTdteGk2OE03Z3RSYnlZSGh6TFhYVFhMa3M4NDMxdDQ2SGdOSHhVOUxfcWlLRVBmcDVZQXdnLXA4QUN3VENWd0pqUHU5eXlad3ZvR1FrLWxiWF9kYWlUT0dpSkNxQ0x6dFU4M082QXpqNTNhMkVVTV9PNm84RnlvMElrTi1qREMzODBZd3JZeEYyem85U2JPYXNmVlNyUXhoWFhxMzZSb2loekhmWlpkbFpjRm1QQ01kemdLbjBWSEUtdFBxdGd4RnZ6V0V2a3QxdEpETmVOMC1UN01GVHRHZUczM3F0NGlLMFdCQmlkVElKWVFGaVFfMVpDemVfZmIzZWxQdFBoNUxRQk95b3BKbldTTmZSR2ZkdDBHZDh0NXA0QzBWNHEtN3MxMVUxTmRKZjZzZDE1X1A2b2lMbW1rbURFQS1XVnhWSDNzOFE1cHBvSlVFbkhXRDRUck5vcm9jRWZuSFlTVlhxT2I4SGlzMTh2a1oyWUdnZGdBbjBhY3ExUHQ2bzlmamVFUFg5aUl2S25kZmg0dUZseTA1ZGVQcnlKRUJoS2E5VFdNdGNuRnhRYTZnZTgtTjV1WmFJNU5kUzRvRlFpV3BmVjBKVmZUemdjaUVrTnNzbjFHWjYwR2FaRlJ2enMzMjJFLWYwblQtUlJDREdYNGc5SmhzdkJGNnhSbHNNeS1Ga0dyYVVZZ0c0SUdCRjNGQ0JuS2IwSkdST3hyaEh2TElaczE4NC1SSFA0bUlyMDlaRy1DeEV6U2FFR1h2S3BLdVFqSTZXZXdjdHltSl8zcm9sTDhoY0FHN3ctcnFQVHd6TEJvV19iN1hzamY3UFVaYjJPZVRCOEZIckdVNGtKdUNNSkpXVW5lejB6MHhGR2ZTOHpNS1VRb1dyZHJGU3FybHBQRzd1ajB0TEVwa01tU1JVOWFYRFFLMlprcHNfQmxiWlJGdFd2bjAzeWxmOGVUcGJ2SXRZZkttZEc2RXYtUFZUcVh1NVJ0Zm1xN2x2alZrMGg4eXdrbDVMenJRR2lBaWV6VkVzN01xTzRkQTRZZWpwb05qS1dKal9ESjdZYWlpdTVWekV4cEtmUC1qWDNET2E2TVhCakRvRjhLeXR3NEYwZXozQ3I3QmxEZHhON0oyNEVmSEVIRFVGUTA1NzVZRnRzWVdTeXRaM284X2h0bW94dzlkQnhVZlotajY3TmdTNjFwTjJ5bzNMY3F1MXZkVzBvSFhPUXdHVXM2MEdNV0pHVWRpMjkwS1JJWEJ6bFRBTElQb1ZPaHJ5V2hrUWdCWFJ4Z0RTcWp5WFc5TjVnbUdsN2c1ajRRcE9kWEd5LTRTcENFV3dwdm9rR3pTMVR1akRsMGM1aU4waWF5SGJWazV6SkJFbTVmeGNMT0Q4azJtZmxkc0ZKQ1VFdlhycTdnbzREZ2FEUEc2TE1SdlZDTks4S2x5cUVrdkt3QnU0a2pkNmNXbmRyeHJoMUJET1lrTjZfcE1jSnhQUWp0T09HMFBsWFBmRmlsMDFpbkozNklYOTlvd1M3ZDhrVGxmdS15WXBmMXVzR1hMVGRYSWNYeE1NaW9TZUlfeExmRmxZM1B2cXdZNUI3cU9uNTZIbzN6TS1JVW5XV3BpYnNCUzc2N2ZaN0JiT1M3aDVaalJkam4wRVRrWnluNVE5MENXTGZxd2lzOHFkdFVQZGNoaDhOQnEzeC1LMUg5b2VqTkVLdWhTQ2FYTGwySmZOdVk4TjFScXVKSTVFQlRxb3Vjd0h5UUh6SjRFcW1vODlzd2x2cTZQcFZpMk45WWdpaUY4bWpicUJGNjJaSjN1SngyamFBNWtIUXAwekV6clVBOWwzck9XdVRxa2YySm05UHIwMDQ2bzZsMDdrNGlaRHJsTF94M1NkdU4zVVh0b2pNUDRQVDJKZ19aQ0xuXzRQNGlYWThFaXNmUjFzUk9YYTJjZ21tLWtqRGlOZmprQVFTc2R2TVNIS2xScVlaTExKSUpQbjl4ZmEyYkV5RGJVOWdNNDJMejFMRENZVkpRY2E0YWgtNFJCSWdoMWhCWnVJSU5MZzhpVGlFOFhCLWtWWFUzUDZQeGFMeG5EY1hDcnhmYTFLLVB0Y1VzXzE3WVI2bERQWjlGOEdWOFJPSXI3NDhmbTd1MW5zSDNPOGxOYklGTGotRkp3eDZFdDRjSDhyWkg2cWJQNjEwd0pRcWdMRW9rNkJybnRkSTZDN2syS1FLaXFoY2Y5eTVMMG5wbE5FM3BoMTRmdXV2cVlVLVBadXoxdDFFLXVlWU9rTXBUNXdNeHR3LWZhWUd5ME1Uc29LcVBIRnl4MkhNaHMxMUxuWk5VYjRWUGtnSDA0UUh5bTd0VWV2NWVBcnE5OXA0T1NvQk5qNTJjbi0yWmxuSEhOMU1ZamhFWjRvbHQ4dFlsbkxFWmNqVGRETlpfOVpRVXl4VGY4ZmdRUVlSVGJCME9TRzJoa25SSjZpN1BTSnZibFhTMVR5TFFMT2E1dGJ2NFgyempfckdGTUdtQS1obklzMzFpNmRUc1hVUkhSQ216YzJnakx5ZENsTHJPa3drOVM4azd1OG5FaU5UaUY3X2NZRG9tNjZpNlBVOFlWUnBEbzhDay05dENWQjBaMGgtVm5KTHctQjVFX2sySkVocjkwWkNYZUlBMWotNG9uRDdFWXdXeHE0b1FRMzJYa1k0bW9ZUV9JVVRuUnd0aFBhVnBfa1doNFNmNGpNWnpnNjhOUzdUVmxOUVJsYVdMVTFiUXpUNTNrSHMwTjVrS3ZnNFR5RldpX1RWMk1QcVRPT1lvQ0NncjZhNmFYSlU4Vk82amdzUFVTNWFsbFVjN2l1LW45NnJrb1VfaEgzWjZzd2FoMG1UR1RKTFlDS1loT09aUjRsZXZYZ3haRVd6UlRQQ2RETjVkWHJHeXh0QXJQcEVmOWJaV2RBUC1YRzBRWTZJbWZpa2ZuTHhNV0lza2thRTVLMHRnV2lYbG1ia05TVjZQMzk0Z3MtVERIS0hEazRxT1BwenI5b3hFZ2MtU0Z6WnltblMweFd2cWUwRmZLU3BQdFBBTjBHcExfMUQzVVRwTHdYVno5WFBqYUNkbnBIOGR1VkYzQ3NGZU50a0ZSMEFjTUgweVZHbmN4T0Z4UjNMd3FJZmZOQUlOTXhDTC1uUXpORjFCOWZ2ZE16WnR2RVpqZnBoVXNkcVdUUnhlaEJKRC15RzZDR2hRWkhMblhMc0ItdHhKQURadTZxS2xPUGVLak4xdFBQT09RdkxrNUpRRnNid0ZvUV9HUks3MGI5UmhoMzFrdVNXRUs1V19OUjhqOFc5UnFyX1JJcmE3Slk5eFQta2d4STYzRTRHd1Y4WWxiMFZPNm5HcUl6N1BiSkRkbEQ4dUJfNHlFbW9aWlcyZzdLN2VJRGhRQ2VxSjJUWmh4Y2ZESU5UN0lvYzFXeEtiRFowMHVsWXJmbjFCUDVJMlEwMWdMdzdDQU94Zm1OZHVjdWZNdnNXOEhUV09CV1BJWm5qbVpnYWlCblhucUwtbC16cHUzRHF5WEFRN3hLRjJCQUJjVXBiUmVHdmZVVURnYnQzUXBZRkpUUEFxZXA4QzF4UUowVkYzOGhnRjA5eVJnal8xVGFvS3lXbnZXRWJqTjFjVUgwT195cElyYlRxRlJIQVNOdzk4amxxOWZfdkZnaXJNR1pvRm9jTGFtQWhQUXV1V0Y4Y0txZTN0TW1OWkdUMVBzQWtSTnI5QTVBTHFCOTU2VlNTNjNycnB4Zjg3dWV4MVNGeDBhOGpaWTR3dEQ0cVg2c3FFcWF2emk0cUxNWDF2RUtlckZuNHJsMG9MRExCMEI5QUkzUzZnOTd5eUVMVF9wWU0xVjhhYUlNTnhJMU53XzJIMEhyYzN1ZVJlTktkR1VTTW50Sl91d0JCdWpXWk9hQmFyQlctVDRFMDRHNnQ4MFREMmVoRU5oRDl1RU5COWxxRTJ0YkJqalNBSldHMGNQV0R3RzBiR3VSUUFGOHRidTRYQ2x1M3J3d0t2THFENy02dDBSbzlqX3MzdExiNGREb2VUdzhReEpDRlVkNlcxajVYemFUWDVidjIxb2pqdUZyLWtfNTNoeDZ0cFFIYXduN2o1eENOcHRVRVZGNTRvZTJWU21CVjhOZUZNNHE1SEw3NS1Kam0ydy5rMHktRXZOd21ZMG5Icjh1TExmbXF3IiwKICAiX2xpbmtzIiA6IHsKICAgICJ0cmF2ZWxEb2N1bWVudHMiIDogWyB7CiAgICAgICJib2R5IiA6IHsKICAgICAgICAicmVjb3JkTG9jYXRvciIgOiAiTVI2RDZOIiwKICAgICAgICAidHJhdmVsZXJJZGVudGlmaWVyIiA6ICIyMDA1Q0NFMDAwMDM1OUNBIiwKICAgICAgICAiZmlyc3ROYW1lIiA6ICJNSUNIQUVMIiwKICAgICAgICAibGFzdE5hbWUiIDogIlRFVExPVyIsCiAgICAgICAgImZ1bGxOYW1lIiA6ICJNaWNoYWVsIFRldGxvdyIsCiAgICAgICAgImFjY291bnROdW1iZXIiIDogIjYxNTIwNTY2MiIsCiAgICAgICAgImVsaWdpYmxlRm9yRHJpbmtDb3Vwb24iIDogZmFsc2UsCiAgICAgICAgInBhc3NlbmdlclR5cGUiIDogIkEiCiAgICAgIH0sCiAgICAgICJib2FyZGluZ0JvdW5kcyIgOiBbIHsKICAgICAgICAiaW5kZXgiIDogMSwKICAgICAgICAiYm9hcmRpbmdTZWdtZW50cyIgOiBbIHsKICAgICAgICAgICJ0cmF2ZWxlclNlZ21lbnRJZGVudGlmaWVyIiA6ICIyMDAwMUNFMDAwMTRCMTE3IiwKICAgICAgICAgICJlbGVnaWJsZUZvckRyaW5rQ291cG9uIiA6IGZhbHNlLAogICAgICAgICAgImJvYXJkaW5nRGV0YWlscyIgOiB7CiAgICAgICAgICAgICJjdXN0b21lckFjY2VwdGFuY2VTdGF0dXMiIDogIk5PVF9BQ0NFUFRFRCIsCiAgICAgICAgICAgICJzZWdtZW50U3RhdHVzIiA6IHsKICAgICAgICAgICAgICAiZ2VuZXJhbFN0YXR1cyIgOiAiT1BFTiIKICAgICAgICAgICAgfQogICAgICAgICAgfSwKICAgICAgICAgICJoYXNUc2FQcmVjaGVjayIgOiB0cnVlLAogICAgICAgICAgInZhbGlkQXFxU3RhdHVzIiA6IHRydWUsCiAgICAgICAgICAic2VnbWVudEJvb2tpbmdTdGF0dXMiIDogIkNPTkZJUk1FRCIKICAgICAgICB9IF0KICAgICAgfSBdCiAgICB9IF0KICB9Cn0=",
     "checkInViewReservationPage": {
-        "pnr": {
-            "confirmationNumber": "MR6D6N",
-            "passengers": [
-                "John Doe"
-            ]
-        },
+        "pnr": {"confirmationNumber": "MR6D6N", "passengers": ["John Doe"]},
         "cards": [
             {
-                "dates": {
-                    "first": "2019-10-25",
-                    "second": None
-                },
+                "dates": {"first": "2019-10-25", "second": None},
                 "destinationDescription": "Phoenix",
                 "departureDate": "2019-10-25",
                 "departureAirport": "DEN",
@@ -219,10 +202,10 @@ checkin_get_resp = {
                         "destinationStationName": "Phoenix",
                         "departureDate": "Oct 20",
                         "departureGate": "C49",
-                        "departureTime": "16:35"
+                        "departureTime": "16:35",
                     }
                 ],
-                "travelTime": "1h 55m"
+                "travelTime": "1h 55m",
             }
         ],
         "hazmatText": "Federal law forbids the carriage of hazardous materials such as aerosols, fireworks, lithium batteries and flammable liquids aboard the aircraft in your checked or carryon baggage. E-cigarettes are not permitted in checked baggage and must be transported in carryon baggage only.",
@@ -234,13 +217,13 @@ checkin_get_resp = {
                     "recordLocator": "MR6D6N",
                     "checkInSessionToken": "ewogICJwbnIiIDogewogICAgImNvbmZpcm1hdGlvbk51bWJlciIgOiAiTVI2RDZOIiwKICAgICJwYXNzZW5nZXJzIiA6IFsgIk1pY2hhZWwgVGV0bG93IiBdLAogICAgInBhc3NlbmdlcnNOYW1lcyIgOiBbIHsKICAgICAgImZpcnN0TmFtZSIgOiAiTUlDSEFFTCIsCiAgICAgICJsYXN0TmFtZSIgOiAiVEVUTE9XIgogICAgfSBdCiAgfSwKICAiY2FyZHMiIDogWyB7CiAgICAiZGF0ZXMiIDogewogICAgICAiZmlyc3QiIDogIjIwMTktMTAtMjAiCiAgICB9LAogICAgImRlc3RpbmF0aW9uRGVzY3JpcHRpb24iIDogIlBob2VuaXgiLAogICAgImRlcGFydHVyZURhdGUiIDogIjIwMTktMTAtMjAiLAogICAgImRlcGFydHVyZUFpcnBvcnQiIDogIkRFTiIsCiAgICAiZGVwYXJ0dXJlVGltZSIgOiAiMTI6MjUiLAogICAgImFycml2YWxBaXJwb3J0IiA6ICJQSFgiLAogICAgImFycml2YWxUaW1lIiA6ICIxMzoyMCIsCiAgICAiZmxpZ2h0cyIgOiBbIHsKICAgICAgImZsaWdodE51bWJlciIgOiAiMzU1NiIsCiAgICAgICJoYXNXaWZpIiA6IHRydWUsCiAgICAgICJ0cmF2ZWxUaW1lIiA6ICIxaCA1NW0iLAogICAgICAiYXFxU3RhdHVzIiA6ICJUU0FfUFJFX0NIRUNLIiwKICAgICAgIm9yaWdpbkFpcnBvcnRDb2RlIiA6ICJERU4iLAogICAgICAiZGVzdGluYXRpb25BaXJwb3J0Q29kZSIgOiAiUEhYIiwKICAgICAgImRlc3RpbmF0aW9uU3RhdGlvbk5hbWUiIDogIlBob2VuaXgiLAogICAgICAiZGVwYXJ0dXJlRGF0ZSIgOiAiT2N0IDIwIiwKICAgICAgImRlcGFydHVyZUdhdGUiIDogIkM0OSIsCiAgICAgICJkZXBhcnR1cmVUaW1lIiA6ICIxMjoyNSIKICAgIH0gXSwKICAgICJ0cmF2ZWxUaW1lIiA6ICIxaCA1NW0iLAogICAgImludGVybmF0aW9uYWwiIDogZmFsc2UKICB9IF0sCiAgImFpclRyYXZlbFRva2VuIiA6ICJleUpoYkdjaU9pSmthWElpTENKbGJtTWlPaUpCTVRJNFEwSkRMVWhUTWpVMkluMC4uZE45WF9hV3J4R2VYanBKNE5BcDhOZy5EcF9ZRkN4U0xURi13T3VEMTYyXzdySWhOczRWd0IxRFBUWmtBS01Fa3l3anJxeWJSeUh6QnVmMHl4dDU1TklDV1p2Q3J2NG4yV0oxc0I4UUdyRENtMi1idzRyQWRROFUyMF81UVlhd1dfRmI3RWxFbzZLajFwUVJJbzFwLWM1UnQ5T1RTb1ZnSVRWNTliWVl0ZGhNR0xjSTE0dlVfdlJEY0ZrWThtc043OTR3UC1yRE1wZW1yS3BOcFBtN2lQT2gxdG9rZWNKX2NlUVVXR2VKR05MVG41YlJ4WmV3ZTFPaDZROHdsREp6MGc1VFVnaUQzZ25Hdm1Zb3RYRW4wU053WXQ4bWFJNlpuWC1WRGV3a0pMaklmVzc0djgwN2dNelBDLWxvcGZhSVBUeXROWDBfTmd0blpLVFVhQ25SNjVFdk83bFBEcVRqYVFydU5DZFh5VGNCbDgxRmt0YkNDckxqZVhpUjZFNUk5YW9JaDM4akNUN1pBM243QnE4d243VnF6clRfMV9kSnlieG1nSUUtd3N0c0l5M2lLV0VTTV9BWlJ2V0JYNmxGZ1ZKSFZ5UDZELTFOcmJIckRyYkowc0x6WkxpUUJCZDhZdkhqcTVBbGlBYUZnSlZ2bTh5SjE1RkRmQVFPWjV5TXVDUi1GUWV5MzF6Q09zZllHdFpxV2dDb091dk5kVzhNZDVCbTJOa3gtSXZKNjdIcnlXbWl3Z3JlYW1oakM1blpmb2lnQ2dqQlRBY3BZc050Q3VPWWZULWtWQzNpVGlyVk91NWR3OVBMdlhIdnBTcTZtbXotU2p0bnQ1dnliU2J1bUdTZGJFcENYNVpsUTluclhqRXBHeVNDcm80aDNfVWhadHBKVlQycTdfdFBybjkxRWlxakN1Q3p5ZndtQ01VQlpYVGFfWmY1RWZ4SEtLUHdsblltdUd6eWo4Rm9xTXhKUV9WUlplZXd3LWZTakZMdU5EeUxYcmlUb2Qzb29NQXpwZkJ4OUl0VHFVQXdWRTRSVlg2Q2Z5R21IeVlZWjJQa3cxakhzcjE3ejdSNlNtLUM4b1RKMzBuY0x3WnpNd1BOdzdndGJPNWFsUVNHQ2VhMjRCUks5OWVfekYwZER5cHI1RkpKS1hEcVE2REI3MDA3RFNKVEZJM2U2Vl9CZHk0VE5mYmo5SjRGZkhQYkphVjJRMFNrU1lHNWVQMGstYTZBQWFYRE9Gc29vZlRldXhfb09SVVhyRnJLM3lZekd4NFZVT3V3UUZTVEEwdUxwUkhUQ2lGcktwYjdWMFB3V1VUZlY4eUV0NkhBYlZNcWJZaHItUUJIR01JYS0zNDN0a2pwbGtTM0FUUzVCcl9ETUdRZ0RsZl9Rc1BtTzQzUHNHZmxuMGc3S1FsN2hVU011ck9qZDE3VFd0RnBRTE9jQ3dQTkk3MldvTnh3ZmJRVW95ZXl4RV94RVBzTG44MjVBUW95MFlTMWVPSFVwd1JaeVJFUEpVdHRjd1lCYVF4T0gzcnlDRmNzMGNsbUM4amJPTnRmMkhHQzFqN3lyZTYxc2ZkNTFTZ214bjdia1pkN3FrS0VpTjZQajFMYk9IMDVpQnVJb1NrWXNhNTRTV3hiWUdzaVQwTUpUM3pyQm81Q3Z0TXpTVGF1Q1lqRzBpVnFqVVNPQ2ZyYXNld3pMWWNvT1Y2Sllxb3k2dlBHRXZNMUpLdklUY3pmVVZNMUJkbDJNM1ZGN2p3QkVab012WWpwOU4yTWFMQm1DMk5GQlcwaHZ6alhyNDZYMHh4WXMxRE9ycDVXZGFzSUZsdjZkTGg2ZzVEQW9Db0RET3hXZG9MSG45U1NwXzFwZDc0cGdVYmtxTjZEODlMbjhRekJ5QmcxOUlSV2JJQ2VqNjM3LXMzMzF2SW42eko1MXFrWFhBRXloQTBHdUpUTWEwcTFaSkQwMmNLeXhnRFNqNjlmZWQ1VGM1d2gzZzZVWW8zeE9ibElGLUdyM2Q3d1dwS2gtRkdTZTNYZ3RMOVFSSm1MWmJ1TEw1Z0pqOWM4RzBBZ2hud01ZWFJKc2FrV3V1eWszQ21QeWJHdkFnWWNXZllvdlJWbC1FR1lBX0cxNlZJOGZFc0lpR1pIV1drdmc3bUU2OVF2SGFLeEo3c2pLbENwV2dWU0tQTENRS0lvQ08zblBnOXlmakN0d2FMUDRCWV9BUnVIa2g2NXBBeGdWdUV3TVhtQXh6eGdUNFlyNmhlb1pUaVowLXlXQnRjaUxRcHpEWW84Uk5WWEdQekZnVkt1RFg1T3lkcHhmdF9raUhnWDlkaHB1MUtmbmU3cnVGa202ak1WaEJMR2JWajRJRW05TnhEenpKNkRTOW1BRGxXOWRldjBvXy1WZGNkcXB6ejV5bTdteGk2OE03Z3RSYnlZSGh6TFhYVFhMa3M4NDMxdDQ2SGdOSHhVOUxfcWlLRVBmcDVZQXdnLXA4QUN3VENWd0pqUHU5eXlad3ZvR1FrLWxiWF9kYWlUT0dpSkNxQ0x6dFU4M082QXpqNTNhMkVVTV9PNm84RnlvMElrTi1qREMzODBZd3JZeEYyem85U2JPYXNmVlNyUXhoWFhxMzZSb2loekhmWlpkbFpjRm1QQ01kemdLbjBWSEUtdFBxdGd4RnZ6V0V2a3QxdEpETmVOMC1UN01GVHRHZUczM3F0NGlLMFdCQmlkVElKWVFGaVFfMVpDemVfZmIzZWxQdFBoNUxRQk95b3BKbldTTmZSR2ZkdDBHZDh0NXA0QzBWNHEtN3MxMVUxTmRKZjZzZDE1X1A2b2lMbW1rbURFQS1XVnhWSDNzOFE1cHBvSlVFbkhXRDRUck5vcm9jRWZuSFlTVlhxT2I4SGlzMTh2a1oyWUdnZGdBbjBhY3ExUHQ2bzlmamVFUFg5aUl2S25kZmg0dUZseTA1ZGVQcnlKRUJoS2E5VFdNdGNuRnhRYTZnZTgtTjV1WmFJNU5kUzRvRlFpV3BmVjBKVmZUemdjaUVrTnNzbjFHWjYwR2FaRlJ2enMzMjJFLWYwblQtUlJDREdYNGc5SmhzdkJGNnhSbHNNeS1Ga0dyYVVZZ0c0SUdCRjNGQ0JuS2IwSkdST3hyaEh2TElaczE4NC1SSFA0bUlyMDlaRy1DeEV6U2FFR1h2S3BLdVFqSTZXZXdjdHltSl8zcm9sTDhoY0FHN3ctcnFQVHd6TEJvV19iN1hzamY3UFVaYjJPZVRCOEZIckdVNGtKdUNNSkpXVW5lejB6MHhGR2ZTOHpNS1VRb1dyZHJGU3FybHBQRzd1ajB0TEVwa01tU1JVOWFYRFFLMlprcHNfQmxiWlJGdFd2bjAzeWxmOGVUcGJ2SXRZZkttZEc2RXYtUFZUcVh1NVJ0Zm1xN2x2alZrMGg4eXdrbDVMenJRR2lBaWV6VkVzN01xTzRkQTRZZWpwb05qS1dKal9ESjdZYWlpdTVWekV4cEtmUC1qWDNET2E2TVhCakRvRjhLeXR3NEYwZXozQ3I3QmxEZHhON0oyNEVmSEVIRFVGUTA1NzVZRnRzWVdTeXRaM284X2h0bW94dzlkQnhVZlotajY3TmdTNjFwTjJ5bzNMY3F1MXZkVzBvSFhPUXdHVXM2MEdNV0pHVWRpMjkwS1JJWEJ6bFRBTElQb1ZPaHJ5V2hrUWdCWFJ4Z0RTcWp5WFc5TjVnbUdsN2c1ajRRcE9kWEd5LTRTcENFV3dwdm9rR3pTMVR1akRsMGM1aU4waWF5SGJWazV6SkJFbTVmeGNMT0Q4azJtZmxkc0ZKQ1VFdlhycTdnbzREZ2FEUEc2TE1SdlZDTks4S2x5cUVrdkt3QnU0a2pkNmNXbmRyeHJoMUJET1lrTjZfcE1jSnhQUWp0T09HMFBsWFBmRmlsMDFpbkozNklYOTlvd1M3ZDhrVGxmdS15WXBmMXVzR1hMVGRYSWNYeE1NaW9TZUlfeExmRmxZM1B2cXdZNUI3cU9uNTZIbzN6TS1JVW5XV3BpYnNCUzc2N2ZaN0JiT1M3aDVaalJkam4wRVRrWnluNVE5MENXTGZxd2lzOHFkdFVQZGNoaDhOQnEzeC1LMUg5b2VqTkVLdWhTQ2FYTGwySmZOdVk4TjFScXVKSTVFQlRxb3Vjd0h5UUh6SjRFcW1vODlzd2x2cTZQcFZpMk45WWdpaUY4bWpicUJGNjJaSjN1SngyamFBNWtIUXAwekV6clVBOWwzck9XdVRxa2YySm05UHIwMDQ2bzZsMDdrNGlaRHJsTF94M1NkdU4zVVh0b2pNUDRQVDJKZ19aQ0xuXzRQNGlYWThFaXNmUjFzUk9YYTJjZ21tLWtqRGlOZmprQVFTc2R2TVNIS2xScVlaTExKSUpQbjl4ZmEyYkV5RGJVOWdNNDJMejFMRENZVkpRY2E0YWgtNFJCSWdoMWhCWnVJSU5MZzhpVGlFOFhCLWtWWFUzUDZQeGFMeG5EY1hDcnhmYTFLLVB0Y1VzXzE3WVI2bERQWjlGOEdWOFJPSXI3NDhmbTd1MW5zSDNPOGxOYklGTGotRkp3eDZFdDRjSDhyWkg2cWJQNjEwd0pRcWdMRW9rNkJybnRkSTZDN2syS1FLaXFoY2Y5eTVMMG5wbE5FM3BoMTRmdXV2cVlVLVBadXoxdDFFLXVlWU9rTXBUNXdNeHR3LWZhWUd5ME1Uc29LcVBIRnl4MkhNaHMxMUxuWk5VYjRWUGtnSDA0UUh5bTd0VWV2NWVBcnE5OXA0T1NvQk5qNTJjbi0yWmxuSEhOMU1ZamhFWjRvbHQ4dFlsbkxFWmNqVGRETlpfOVpRVXl4VGY4ZmdRUVlSVGJCME9TRzJoa25SSjZpN1BTSnZibFhTMVR5TFFMT2E1dGJ2NFgyempfckdGTUdtQS1obklzMzFpNmRUc1hVUkhSQ216YzJnakx5ZENsTHJPa3drOVM4azd1OG5FaU5UaUY3X2NZRG9tNjZpNlBVOFlWUnBEbzhDay05dENWQjBaMGgtVm5KTHctQjVFX2sySkVocjkwWkNYZUlBMWotNG9uRDdFWXdXeHE0b1FRMzJYa1k0bW9ZUV9JVVRuUnd0aFBhVnBfa1doNFNmNGpNWnpnNjhOUzdUVmxOUVJsYVdMVTFiUXpUNTNrSHMwTjVrS3ZnNFR5RldpX1RWMk1QcVRPT1lvQ0NncjZhNmFYSlU4Vk82amdzUFVTNWFsbFVjN2l1LW45NnJrb1VfaEgzWjZzd2FoMG1UR1RKTFlDS1loT09aUjRsZXZYZ3haRVd6UlRQQ2RETjVkWHJHeXh0QXJQcEVmOWJaV2RBUC1YRzBRWTZJbWZpa2ZuTHhNV0lza2thRTVLMHRnV2lYbG1ia05TVjZQMzk0Z3MtVERIS0hEazRxT1BwenI5b3hFZ2MtU0Z6WnltblMweFd2cWUwRmZLU3BQdFBBTjBHcExfMUQzVVRwTHdYVno5WFBqYUNkbnBIOGR1VkYzQ3NGZU50a0ZSMEFjTUgweVZHbmN4T0Z4UjNMd3FJZmZOQUlOTXhDTC1uUXpORjFCOWZ2ZE16WnR2RVpqZnBoVXNkcVdUUnhlaEJKRC15RzZDR2hRWkhMblhMc0ItdHhKQURadTZxS2xPUGVLak4xdFBQT09RdkxrNUpRRnNid0ZvUV9HUks3MGI5UmhoMzFrdVNXRUs1V19OUjhqOFc5UnFyX1JJcmE3Slk5eFQta2d4STYzRTRHd1Y4WWxiMFZPNm5HcUl6N1BiSkRkbEQ4dUJfNHlFbW9aWlcyZzdLN2VJRGhRQ2VxSjJUWmh4Y2ZESU5UN0lvYzFXeEtiRFowMHVsWXJmbjFCUDVJMlEwMWdMdzdDQU94Zm1OZHVjdWZNdnNXOEhUV09CV1BJWm5qbVpnYWlCblhucUwtbC16cHUzRHF5WEFRN3hLRjJCQUJjVXBiUmVHdmZVVURnYnQzUXBZRkpUUEFxZXA4QzF4UUowVkYzOGhnRjA5eVJnal8xVGFvS3lXbnZXRWJqTjFjVUgwT195cElyYlRxRlJIQVNOdzk4amxxOWZfdkZnaXJNR1pvRm9jTGFtQWhQUXV1V0Y4Y0txZTN0TW1OWkdUMVBzQWtSTnI5QTVBTHFCOTU2VlNTNjNycnB4Zjg3dWV4MVNGeDBhOGpaWTR3dEQ0cVg2c3FFcWF2emk0cUxNWDF2RUtlckZuNHJsMG9MRExCMEI5QUkzUzZnOTd5eUVMVF9wWU0xVjhhYUlNTnhJMU53XzJIMEhyYzN1ZVJlTktkR1VTTW50Sl91d0JCdWpXWk9hQmFyQlctVDRFMDRHNnQ4MFREMmVoRU5oRDl1RU5COWxxRTJ0YkJqalNBSldHMGNQV0R3RzBiR3VSUUFGOHRidTRYQ2x1M3J3d0t2THFENy02dDBSbzlqX3MzdExiNGREb2VUdzhReEpDRlVkNlcxajVYemFUWDVidjIxb2pqdUZyLWtfNTNoeDZ0cFFIYXduN2o1eENOcHRVRVZGNTRvZTJWU21CVjhOZUZNNHE1SEw3NS1Kam0ydy5rMHktRXZOd21ZMG5Icjh1TExmbXF3IiwKICAiX2xpbmtzIiA6IHsKICAgICJ0cmF2ZWxEb2N1bWVudHMiIDogWyB7CiAgICAgICJib2R5IiA6IHsKICAgICAgICAicmVjb3JkTG9jYXRvciIgOiAiTVI2RDZOIiwKICAgICAgICAidHJhdmVsZXJJZGVudGlmaWVyIiA6ICIyMDA1Q0NFMDAwMDM1OUNBIiwKICAgICAgICAiZmlyc3ROYW1lIiA6ICJNSUNIQUVMIiwKICAgICAgICAibGFzdE5hbWUiIDogIlRFVExPVyIsCiAgICAgICAgImZ1bGxOYW1lIiA6ICJNaWNoYWVsIFRldGxvdyIsCiAgICAgICAgImFjY291bnROdW1iZXIiIDogIjYxNTIwNTY2MiIsCiAgICAgICAgImVsaWdpYmxlRm9yRHJpbmtDb3Vwb24iIDogZmFsc2UsCiAgICAgICAgInBhc3NlbmdlclR5cGUiIDogIkEiCiAgICAgIH0sCiAgICAgICJib2FyZGluZ0JvdW5kcyIgOiBbIHsKICAgICAgICAiaW5kZXgiIDogMSwKICAgICAgICAiYm9hcmRpbmdTZWdtZW50cyIgOiBbIHsKICAgICAgICAgICJ0cmF2ZWxlclNlZ21lbnRJZGVudGlmaWVyIiA6ICIyMDAwMUNFMDAwMTRCMTE3IiwKICAgICAgICAgICJlbGVnaWJsZUZvckRyaW5rQ291cG9uIiA6IGZhbHNlLAogICAgICAgICAgImJvYXJkaW5nRGV0YWlscyIgOiB7CiAgICAgICAgICAgICJjdXN0b21lckFjY2VwdGFuY2VTdGF0dXMiIDogIk5PVF9BQ0NFUFRFRCIsCiAgICAgICAgICAgICJzZWdtZW50U3RhdHVzIiA6IHsKICAgICAgICAgICAgICAiZ2VuZXJhbFN0YXR1cyIgOiAiT1BFTiIKICAgICAgICAgICAgfQogICAgICAgICAgfSwKICAgICAgICAgICJoYXNUc2FQcmVjaGVjayIgOiB0cnVlLAogICAgICAgICAgInZhbGlkQXFxU3RhdHVzIiA6IHRydWUsCiAgICAgICAgICAic2VnbWVudEJvb2tpbmdTdGF0dXMiIDogIkNPTkZJUk1FRCIKICAgICAgICB9IF0KICAgICAgfSBdCiAgICB9IF0KICB9Cn0=",
                     "firstName": "John",
-                    "lastName": "Doe"
-                }
+                    "lastName": "Doe",
+                },
             },
-            "travelDocuments": None
-        }
+            "travelDocuments": None,
+        },
     },
-    "prefillPassengerAPISDocuments": None
+    "prefillPassengerAPISDocuments": None,
 }
 
 checkin_post_resp = {
@@ -250,7 +233,7 @@ checkin_post_resp = {
             "key": "CHECKIN__YOURE_CHECKEDIN",
             "body": "You're checked in!",
             "icon": "SUCCESS",
-            "textColor": "NORMAL"
+            "textColor": "NORMAL",
         },
         "flights": [
             {
@@ -279,19 +262,17 @@ checkin_post_resp = {
                                 "body": {
                                     "firstName": "John",
                                     "lastName": "Doe",
-                                    "travelerID": [
-                                        "2005CCE0000359CA"
-                                    ]
-                                }
+                                    "travelerID": ["2005CCE0000359CA"],
+                                },
                             }
-                        }
+                        },
                     }
                 ],
                 "originAirportCode": "DEN",
                 "destinationAirportCode": "PHX",
                 "flightNumber": "3556",
                 "hasWifi": True,
-                "travelTime": "1h 55m"
+                "travelTime": "1h 55m",
             }
         ],
         "_links": {
@@ -302,12 +283,10 @@ checkin_post_resp = {
                 "body": {
                     "firstName": "John",
                     "lastName": "Doe",
-                    "travelerID": [
-                        "2005CCE0000359CA"
-                    ]
-                }
+                    "travelerID": ["2005CCE0000359CA"],
+                },
             },
-            "viewAllBoardingPasses": None
-        }
+            "viewAllBoardingPasses": None,
+        },
     }
 }

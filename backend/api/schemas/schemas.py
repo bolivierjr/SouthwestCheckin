@@ -8,7 +8,7 @@ def _validate_phone(data):
     if data:
         match = re.match(
             "^([0-9]( |-)?)?(\(?[0-9]{3}\)?|[0-9]{3})( |-)?([0-9]{3}( |-)?[0-9]{4}|[a-zA-Z0-9]{7})$",
-            data
+            data,
         )
 
         if not match:

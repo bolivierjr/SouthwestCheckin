@@ -23,19 +23,14 @@ class RedisStream(StringIO):
                 deserialized_messages.append(record)
 
                 serialized_messages = json.dumps(
-                    deserialized_messages,
-                    separators=(",", ":")
+                    deserialized_messages, separators=(",", ":")
                 )
 
                 self.redis_client.hset(
-                    self.confirmation,
-                    "messages",
-                    serialized_messages
+                    self.confirmation, "messages", serialized_messages
                 )
 
             else:
                 self.redis_client.hset(
-                    self.confirmation,
-                    "messages",
-                    json.dumps([record])
+                    self.confirmation, "messages", json.dumps([record])
                 )

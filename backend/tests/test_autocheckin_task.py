@@ -16,19 +16,19 @@ def test_autocheckin(celery_app):
         mock.register_uri(
             "GET",
             f"{base_url}mobile-air-booking/v1/mobile-air-booking/page/view-reservation/{conf_number}{params}",
-            json=reservation_resp
+            json=reservation_resp,
         )
 
         mock.register_uri(
             "GET",
             f"{base_url}mobile-air-operations/v1/mobile-air-operations/page/check-in/{conf_number}{params}",
-            json=checkin_get_resp
+            json=checkin_get_resp,
         )
 
         mock.register_uri(
             "POST",
             f"{base_url}mobile-air-operations/v1/mobile-air-operations/page/check-in",
-            json=checkin_post_resp
+            json=checkin_post_resp,
         )
 
         autocheckin.apply(args=["MR6D6N", "John", "Doe", []])

@@ -1,4 +1,3 @@
-
 import os
 import pytest
 from tasks.celery import app
