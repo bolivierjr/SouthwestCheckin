@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { Container, Segment, Form, Transition, Icon } from 'semantic-ui-react';
+import { Container, Segment, Form, Transition, Icon, Button } from 'semantic-ui-react';
 import './InfoScreen.css';
 import { validate, useWindowDimensions } from '../../utils';
 
@@ -78,7 +78,14 @@ function InfoScreen({ location, handlePath }) {
     messages on the infoscreen.
   */
   const handleSubmit = async event => {
-    setState({ ...state, messages: [] });
+    let method = "GET";
+
+    const buttonName = event.target.name
+    if (buttonName === "terminate") {
+      method = "DELETE";
+    }
+
+    setState({ ...state, messages: ["Loading..."]});
 
     const formValidation = validate('confirmation', confirmation);
 
@@ -91,7 +98,9 @@ function InfoScreen({ location, handlePath }) {
       return;
     }
 
-    const data = await fetchUrl();
+    setConfirmation('')
+
+    const data = await fetchUrl(buttonName, method);
 
     if (data.status) {
       setState({
@@ -106,7 +115,6 @@ function InfoScreen({ location, handlePath }) {
         transition: true
       });
     }
-    console.log(data);
   };
 
   /*
@@ -114,17 +122,18 @@ function InfoScreen({ location, handlePath }) {
     backend to check the status of the autocheckin
     task.
   */
-  const fetchUrl = async () => {
+  const fetchUrl = async (buttonName, method) => {
     try {
       const response = await fetch(`/api/info/${confirmation}`, {
+        method,
         headers: {
           'Content-Type': 'application/json'
         }
       });
 
       const data = await response.json();
-
       return data;
+
     } catch (err) {
       console.log(err);
     }
@@ -147,7 +156,7 @@ function InfoScreen({ location, handlePath }) {
         </Transition>
       </Segment>
 
-      <Form size={width > 480 ? 'big' : 'small'} onSubmit={handleSubmit}>
+      <Form size={width > 480 ? 'big' : 'small'}>
         <Form.Field>
           <label>Confirmation</label>
           <input
@@ -160,16 +169,26 @@ function InfoScreen({ location, handlePath }) {
             placeholder="Confirmation"
           />
         </Form.Field>
-        <Form.Button
+        <Button
           color="blue"
-          content="Submit"
+          name="submit"
+          onClick={handleSubmit}
           /* 
             Uncomment the line below if you want the
             button to disable on form validations.
           */
 
           // disabled={state.btnDisable}
-        />
+        >
+          Submit
+        </Button>
+        <Button
+          color="red"
+          name="terminate"
+          onClick={handleSubmit}
+        >
+          Cancel
+        </Button>
       </Form>
     </Container>
   );

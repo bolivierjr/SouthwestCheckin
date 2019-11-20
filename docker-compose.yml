@@ -15,29 +15,6 @@ services:
     restart: always
     volumes:
       - './backend:/backend'
-    ports:
-      - '5555:5555'
-
-  celery:
-    depends_on:
-      - redis-cache
-    env_file:
-      - backend/.env
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    command:
-      [
-        celery,
-        worker,
-        --app=tasks.celery.app,
-        --pool=gevent,
-        --concurrency=40,
-        --loglevel=INFO,
-      ]
-    restart: always
-    volumes:
-      - './backend:/backend'
 
   client:
     depends_on:
