@@ -7,7 +7,7 @@ from tests.responses import reservation_resp, checkin_get_resp, checkin_post_res
 redis_client = RedisCache().connect()
 
 
-def test_autocheckin(celery_app):
+def test_autocheckin():
     with requests_mock.Mocker(real_http=True) as mock:
         base_url = "https://mobile.southwest.com/api/"
         conf_number = "MR6D6N"
@@ -31,6 +31,6 @@ def test_autocheckin(celery_app):
             json=checkin_post_resp,
         )
 
-        autocheckin.apply(args=["MR6D6N", "John", "Doe", []])
+        autocheckin(args=["MR6D6N", "John", "Doe", []])
 
         assert redis_client.hget("MR6D6N", "messages") == []

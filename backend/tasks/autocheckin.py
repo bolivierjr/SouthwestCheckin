@@ -1,5 +1,5 @@
+import os
 import sys
-from .celery import app
 from utils import RedisCache
 from utils import RedisStream
 from datetime import timedelta
@@ -9,10 +9,12 @@ from southwest.checkin import auto_checkin
 redis_client = RedisCache().connect()
 
 
-@app.task(bind=True)
-def autocheckin(self, confirmation, firstname, lastname, notifications):
+def autocheckin(confirmation, firstname, lastname, notifications):
+    """
+    Worker for multiprocessing Process.
+    """
     try:
-        redis_client.hset(confirmation, "running", "True")
+        redis_client.hmset(confirmation, {"running": "True", "PID": os.getpid()})
         redis_client.expire(confirmation, timedelta(days=60))
 
         sys.stdout = RedisStream(confirmation, redis_client)

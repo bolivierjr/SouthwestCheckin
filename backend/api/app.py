@@ -1,7 +1,9 @@
 import os
+import signal
 from utils import RedisCache
 from tasks import autocheckin
 from api.extensions import ma
+from multiprocessing import Process
 from marshmallow import ValidationError
 from flask import Flask, request, jsonify
 from redis.exceptions import ConnectionError
@@ -51,8 +53,12 @@ def create_app():
             if phone is not None:
                 notifications.append({"mediaType": "SMS", "phoneNumber": phone})
 
-            # Run the auto_checkin script celery task in the background
-            autocheckin.delay(confirmation, firstname, lastname, notifications)
+            # Run the auto_checkin script in a background task with multiprocessing.
+            proc = Process(
+                target=autocheckin,
+                args=(confirmation, firstname, lastname, notifications),
+            )
+            proc.start()
 
             return (
                 jsonify({"status": "Created a new SouthwestCheckin task successfully"}),
@@ -65,7 +71,7 @@ def create_app():
         except (ConnectionError, TypeError, Exception):
             return jsonify({"error": "There was an error. Contact admin at once."}), 500
 
-    @app.route("/info/<string:confirmation>", methods=["GET"])
+    @app.route("/info/<string:confirmation>", methods=["GET", "DELETE"])
     def info(confirmation):
         try:
             checkin_info = redis_client.hgetall(confirmation)
@@ -76,11 +82,28 @@ def create_app():
                     200,
                 )
 
+            elif request.method == "DELETE":
+                pid = checkin_info.get("PID")
+                running = checkin_info.get("running")
+
+                # Kill process if running and wait for it to be terminated.
+                if pid and running == "True":
+                    os.kill(int(pid), signal.SIGTERM)
+                    os.waitpid(int(pid), os.WUNTRACED)
+
+                # Delete the confirmation info from redis
+                redis_client.delete(confirmation)
+
+                return jsonify({"status": "Task deleted successfully."}), 200
+
             InfoSerializer = InfoSchema()
 
             return InfoSerializer.jsonify(checkin_info), 200
 
         except (ConnectionError, Exception):
-            return jsonify({"error": "There was an error. Contact admin at once."}), 500
+            return (
+                jsonify({"status": "There was an error. Contact admin at once."}),
+                500,
+            )
 
     return app
