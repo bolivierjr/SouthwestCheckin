@@ -86,10 +86,9 @@ def create_app():
                 pid = checkin_info.get("PID")
                 running = checkin_info.get("running")
 
-                # Kill process if running and wait for it to be terminated.
+                # Kill process if running
                 if pid and running == "True":
                     os.kill(int(pid), signal.SIGTERM)
-                    os.waitpid(int(pid), os.WUNTRACED)
 
                 # Delete the confirmation info from redis
                 redis_client.delete(confirmation)

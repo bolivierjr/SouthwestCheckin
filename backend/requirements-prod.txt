@@ -8,7 +8,5 @@ uuid==1.30
 Flask==1.1.1
 flask-marshmallow==0.10.1
 redis==3.3.10
-celery==4.3.0
 gevent==1.4.0
-flower==0.9.3
 gunicorn==19.9.0
