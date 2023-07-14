@@ -9,7 +9,6 @@ const useWindowDimensions = () => {
   const getDimensions = () => {
     const { innerWidth: width, innerHeight: height } = window;
     return { width, height };
-
   };
 
   const [windowDimensions, setWindowDimensions] = useState(getDimensions);
